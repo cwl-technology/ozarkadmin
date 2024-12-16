@@ -16,9 +16,9 @@ const page = () => {
     const [description1, setDescription1] = useState();
     const [description3, setDescription3] = useState();
 
-    const [image1, setImage1] = useState();
-    const [image2, setImage2] = useState();
-    const [image3, setImage3] = useState();
+    const [image, setImage] = useState();
+    // const [image2, setImage2] = useState();
+    // const [image3, setImage3] = useState();
 
     const [icon1, setIcon1] = useState();
     const [icon2, setIcon2] = useState();
@@ -50,9 +50,9 @@ const page = () => {
             formdata.append("content3", data.content3);
             formdata.append("subheading4", data.subheading4);
             formdata.append("content4", data.content4);
-            formdata.append("image1", image1);
-            formdata.append("image2", image2);
-            formdata.append("image3", image3);
+            formdata.append("image", image);
+            // formdata.append("image2", image2);
+            // formdata.append("image3", image3);
             formdata.append("icon1", icon1);
             formdata.append("icon2", icon2);
             formdata.append("icon3", icon3);
@@ -361,22 +361,22 @@ const page = () => {
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Image1
+                                                    Image
                                                 </label>
                                                 <input
                                                     type="file"
-                                                    onChange={(e) => setImage1(e.target.files[0])}
+                                                    onChange={(e) => setImage(e.target.files[0])}
                                                     className="form-control"
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image1 ? (
-                                                <img src={URL.createObjectURL(image1)} alt="Uploaded Image" width="100px" />
-                                            ) : <img src={storyData?.image1} alt="Uploaded Image" width="100px" />}
+                                            {image ? (
+                                                <img src={URL.createObjectURL(image)} alt="Uploaded Image" width="100px" />
+                                            ) : <img src={storyData?.image} alt="Uploaded Image" width="100px" />}
 
                                         </div>
-                                        <div className="col-md-6">
+                                        {/* <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image2
@@ -411,7 +411,7 @@ const page = () => {
                                                 <img src={URL.createObjectURL(image3)} alt="Uploaded Image" width="100px" />
                                             ) : <img src={storyData?.image3} alt="Uploaded Image" width="100px" />}
 
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </fieldset>
 

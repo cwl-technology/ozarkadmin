@@ -26,7 +26,7 @@ export default function page() {
 
             const res = await api.post(`/jobs/create_job`, {
                 job_title: inputData?.job_title,
-                job_description: inputData?.job_title,
+                job_description: inputData?.job_description,
                 available_posts: inputData?.available_posts,
                 skills: skills
 

@@ -1,9 +1,8 @@
 "use client"
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import api from "@/_config/config";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false })
 import { useForm } from "react-hook-form"
@@ -21,43 +20,72 @@ const page = () => {
     const [image1, setImage1] = useState();
     const [image2, setImage2] = useState();
     const [image3, setImage3] = useState();
+    const [image4, setImage4] = useState();
 
+    const [data, setData] = useState();
 
     const config = {
         height: 300,
         readonly: false
     };
 
-    const router = useRouter();
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm()
+    const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm()
 
     const onSubmit = async (data) => {
         try {
             const formdata = new FormData();
-            formdata.append("solution_name", data.solution_name);
-            formdata.append("solution_slug", data.solution_slug);
-            formdata.append("heading", data.heading);
-            formdata.append("description1", description1 ? description1 : "");
-            formdata.append("sub_heading1", data.sub_heading1);
+
+            formdata.append("main_heading", data.main_heading);
+            formdata.append("main_content", data.main_content);
+            formdata.append("main_description", description2 ? description2 : "");
+            formdata.append("subheading1", data.subheading1);
             formdata.append("content1", data.content1);
-            formdata.append("sub_heading2", data.sub_heading2);
+            formdata.append("subheading2", data.subheading2);
             formdata.append("content2", data.content2);
-            formdata.append("description2", description2 ? description2 : "");
+            formdata.append("subheading3", data.subheading3);
+            formdata.append("description1", description1 ? description1 : "");
             formdata.append("image1", image1);
             formdata.append("image2", image2);
             formdata.append("image3", image3);
+            formdata.append("image4", image4);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
             formdata.append("meta_description", description3 ? description3 : "");
+            formdata.append("id", data._id)
 
-            const res = await api.post("/solution/create_solution", formdata);
+            const res = await api.post("/vision_and_value/update_vision_and_values", formdata);
             console.log(res.data);
             if (res.data.status == 1) {
                 toast.success(res.data.message);
-                router.push("/admin/solutions/view");
             } else {
                 toast.error(res.data.message);
             }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+
+    useEffect(() => {
+        if (data) {
+            reset(data)
+        }
+    }, [data, reset])
+    const getData = async () => {
+        try {
+            const res = await api.get("/vision_and_value/get_vision_value");
+            if (res.data.status == 1) {
+                setData(res.data.data);
+                setDescription1(res.data.data.description1)
+                setDescription2(res.data.data.main_description)
+                setDescription3(res.data.data.meta_description)
+            }
+            console.log(res.data);
         } catch (err) {
             console.log(err);
         }
@@ -99,29 +127,16 @@ const page = () => {
                                                 <label>
                                                     Content 1
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("content1")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the content"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 1
-                                                </label>
-                                                <input
-                                                   
-                                                    type="file"
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <img src="" alt="" />
-                                        </div>
+
+
 
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
@@ -141,29 +156,16 @@ const page = () => {
                                                 <label>
                                                     Content 2
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("content2")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the content"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 2
-                                                </label>
-                                                <input
-                                                   
-                                                    type="file"
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <img src="" alt="" />
-                                        </div>
+
+
 
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
@@ -171,47 +173,19 @@ const page = () => {
                                                     Subheading 3
                                                 </label>
                                                 <input
-                                                    {...register("subheading1")}
+                                                    {...register("subheading3")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the subheading"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 3
-                                                </label>
-                                                <input
-                                                    {...register("content1")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the content"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 3
-                                                </label>
-                                                <input
-                                                   
-                                                    type="file"
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <img src="" alt="" />
-                                        </div>
 
 
                                         <div className="col-md-12">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Description
+                                                    Description 1
                                                 </label>
                                                 <JoditEditor
                                                     ref={editor1}
@@ -222,6 +196,43 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
+
+                                        <div className="col-md-4">
+                                            <div className="position-relative form-group">
+                                                <label>
+                                                    Image 1
+                                                </label>
+                                                <input
+                                                    onChange={(e) => setImage1(e.target.files[0])}
+                                                    type="file"
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2 d-flex align-items-center">
+                                            {
+                                                image1 ? <img src={URL.createObjectURL(image1)} alt="" width={50} /> : <img src={data?.image1} alt="" width={50} />
+                                            }
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="position-relative form-group">
+                                                <label>
+                                                    Image 2
+                                                </label>
+                                                <input
+                                                    onChange={(e) => setImage2(e.target.files[0])}
+                                                    type="file"
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2 d-flex align-items-center">
+
+                                            {
+                                                image2 ? <img src={URL.createObjectURL(image2)} alt="" width={50} /> : <img src={data?.image2} alt="" width={50} />
+                                            }
+                                        </div>
+
                                     </div>
                                 </fieldset>
 
@@ -236,7 +247,7 @@ const page = () => {
                                                     Heading
                                                 </label>
                                                 <input
-                                                    {...register("heading")}
+                                                    {...register("main_heading")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the heading"
@@ -249,141 +260,13 @@ const page = () => {
                                                     Content
                                                 </label>
                                                 <input
-                                                    {...register("content")}
+                                                    {...register("main_content")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the content"
                                                 />
                                             </div>
                                         </div>
-
-
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Subheading 1
-                                                </label>
-                                                <input
-                                                    {...register("subheading1")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the subheading"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 1
-                                                </label>
-                                                <input
-                                                    {...register("content1")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the content"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 1
-                                                </label>
-                                                <input
-                                                   
-                                                    type="file"
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <img src="" alt="" />
-                                        </div>
-
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Subheading 2
-                                                </label>
-                                                <input
-                                                    {...register("subheading2")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the subheading"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 2
-                                                </label>
-                                                <input
-                                                    {...register("content2")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the content"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 2
-                                                </label>
-                                                <input
-                                                   
-                                                    type="file"
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <img src="" alt="" />
-                                        </div>
-
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Subheading 3
-                                                </label>
-                                                <input
-                                                    {...register("subheading1")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the subheading"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 3
-                                                </label>
-                                                <input
-                                                    {...register("content1")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the content"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 3
-                                                </label>
-                                                <input
-                                                   
-                                                    type="file"
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <img src="" alt="" />
-                                        </div>
-
 
                                         <div className="col-md-12">
                                             <div className="position-relative form-group">
@@ -391,76 +274,48 @@ const page = () => {
                                                     Description
                                                 </label>
                                                 <JoditEditor
-                                                    ref={editor1}
-                                                    value={description1}
+                                                    ref={editor2}
+                                                    value={description2}
                                                     config={config}
                                                     tabIndex={1}
-                                                    onBlur={(newContent) => setDescription1(newContent)}
+                                                    onBlur={(newContent) => setDescription2(newContent)}
                                                 />
                                             </div>
                                         </div>
-                                    </div>
-                                </fieldset>
 
-
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Images
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-6">
+                                        <div className="col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Image1
+                                                    Image 1
                                                 </label>
                                                 <input
-                                                    type="file"
-                                                    onChange={(e) => setImage1(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image1 ? (
-                                                <img src={URL.createObjectURL(image1)} alt="Uploaded Image" width="100px" />
-                                            ) : null}
-
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image2
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage2(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image2 ? (
-                                                <img src={URL.createObjectURL(image2)} alt="Uploaded Image" width="100px" />
-                                            ) : null}
-
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image3
-                                                </label>
-                                                <input
-                                                    type="file"
                                                     onChange={(e) => setImage3(e.target.files[0])}
+                                                    type="file"
                                                     className="form-control"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image3 ? (
-                                                <img src={URL.createObjectURL(image3)} alt="Uploaded Image" width="100px" />
-                                            ) : null}
-
+                                        <div className="col-md-2 d-flex align-items-center">
+                                                {
+                                                    image3 ? <img src={URL.createObjectURL(image3)} alt="" width={50}/> : <img src={data?.image3} alt="" width={50}/>
+                                                }
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="position-relative form-group">
+                                                <label>
+                                                    Image 2
+                                                </label>
+                                                <input
+                                                    onChange={(e) => setImage4(e.target.files[0])}
+                                                    type="file"
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2 d-flex align-items-center">
+                                                {
+                                                    image4 ? <img src={URL.createObjectURL(image4)} alt="" width={50}/> : <img src={data?.image4} alt="" width={50}/>
+                                                }
                                         </div>
                                     </div>
                                 </fieldset>
@@ -512,7 +367,7 @@ const page = () => {
                                         </div>
                                     </div>
                                 </fieldset>
-                                <button className="mt-2 px-3 btn btn-primary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>{isSubmitting ? "Creating..." : "Create"}</button>
+                                <button className="mt-2 px-3 btn btn-primary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>{isSubmitting ? "Updating..." : "Update"}</button>
                             </form>
                         </div>
                     </div>

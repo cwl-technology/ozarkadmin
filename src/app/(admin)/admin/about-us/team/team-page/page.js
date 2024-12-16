@@ -14,8 +14,8 @@ const page = () => {
 
     const [description3, setDescription3] = useState();
 
-    const [image1, setImage1] = useState();
-    const [image2, setImage2] = useState();
+    const [image, setImage] = useState();
+    // const [image2, setImage2] = useState();
 
     const [icon1, setIcon1] = useState();
     const [icon2, setIcon2] = useState();
@@ -37,7 +37,7 @@ const page = () => {
         try {
             const formdata = new FormData();
 
-        
+
             formdata.append("subheading1", data.subheading1);
             formdata.append("content1", data.content1);
             formdata.append("subheading2", data.subheading2);
@@ -46,8 +46,8 @@ const page = () => {
             formdata.append("content3", data.content3);
             formdata.append("subheading4", data.subheading4);
             formdata.append("content4", data.content4);
-            formdata.append("image1", image1);
-            formdata.append("image2", image2);
+            formdata.append("image", image);
+            // formdata.append("image2", image2);
             formdata.append("icon1", icon1);
             formdata.append("icon2", icon2);
             formdata.append("icon3", icon3);
@@ -55,7 +55,7 @@ const page = () => {
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
             formdata.append("meta_description", description3 ? description3 : "");
-            formdata.append("id",data._id)
+            formdata.append("id", data._id)
 
             // console.log(res.data);
             const res = await api.post("/leadership_team/update_leadership_page", formdata);
@@ -103,11 +103,37 @@ const page = () => {
                 <div className="col-md-12 col-xl-12">
                     <div className="main-card mb-3 card">
                         <div className="card-header">
-                             LEADERSHIP TEAM PAGE
+                            LEADERSHIP TEAM PAGE
                         </div>
 
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)}>
+
+                                {/* <fieldset class="border rounded p-3 px-4 mb-4">
+                                    <legend class="float-none w-auto px-3">
+                                        Images
+                                    </legend>
+                                    <div className="form-row">
+                                        <div className="col-md-6">
+                                            <div className="position-relative form-group">
+                                                <label>
+                                                    Image
+                                                </label>
+                                                <input
+                                                    type="file"
+                                                    onChange={(e) => setImage(e.target.files[0])}
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
+                                            {image ? (
+                                                <img src={URL.createObjectURL(image)} alt="" width="100px" />
+                                            ) : <img src={teamPageData?.image} alt="" width="100px" />}
+                                        </div>
+
+                                    </div>
+                                </fieldset> */}
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
@@ -306,52 +332,6 @@ const page = () => {
 
                                         <div className="col-md-6"></div>
 
-                                    </div>
-                                </fieldset>
-
-
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Images
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image1
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage1(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image1 ? (
-                                                <img src={URL.createObjectURL(image1)} alt="" width="100px" />
-                                            ) : <img src={teamPageData?.image1} alt="" width="100px" />}
-
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image2
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage2(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image2 ? (
-                                                <img src={URL.createObjectURL(image2)} alt="" width="100px" />
-                                            ) : <img src={teamPageData?.image2} alt="" width="100px" />}
-
-                                        </div>
-                                        
                                     </div>
                                 </fieldset>
 

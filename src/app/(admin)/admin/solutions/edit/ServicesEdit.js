@@ -20,6 +20,7 @@ const page = () => {
 
     const [image1, setImage1] = useState();
     const [image2, setImage2] = useState();
+    const [solution_image, setSolutionImage] = useState();
     const [icon1, setIcon1] = useState();
     const [icon2, setIcon2] = useState();
 
@@ -61,6 +62,7 @@ const page = () => {
             formdata.append("why_choose_description", description2 ? description2 : "");
             formdata.append("image1", image1);
             formdata.append("image2", image2);
+            formdata.append("solution_image", solution_image);
             formdata.append("icon1", icon1);
             formdata.append("icon2", icon2);
             formdata.append("title", data.title);
@@ -171,6 +173,25 @@ const page = () => {
                                                     placeholder="Enter the content">
                                                 </textarea>
                                             </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="position-relative form-group">
+                                                <label>
+                                                    Solution Image
+                                                </label>
+                                                <input
+                                                    type="file"
+                                                    onChange={(e) => setSolutionImage(e.target.files[0])}
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                            {solution_image ? (
+                                                <img src={URL.createObjectURL(solution_image)} alt="" width="100px" />
+                                            ) : <img src={solutionData?.solution_image} alt="" width="100px" />
+                                            }
+
                                         </div>
                                         <div className="col-md-12">
                                             <div className="position-relative form-group">
