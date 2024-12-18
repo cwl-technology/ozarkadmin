@@ -14,6 +14,8 @@ import Link from "next/link"
 
 const page = () => {
   const [adminLogin, setAdminLogin] = useState({})
+  const [loader, setLoader] = useState(false);
+
   const router = useRouter()
 
   const handleLoginDetails = (e) => {
@@ -25,8 +27,10 @@ const page = () => {
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
+      setLoader(true);
       const res = await api.post(`/auth/admin_login`, adminLogin);
-      console.log(res.data);
+      setLoader(false);
+
       if (res.data.status === 0) {
         toast.error(res.data.message);
       } else {
@@ -47,7 +51,7 @@ const page = () => {
           <img src="/assets/images/logo1.png" alt="" height="45px" />
           <img src="/assets/images/logo2.png" alt="" height="50px" />
         </div>
-        <div style={{ width: "500px",backgroundColor:"white",borderRadius:"8px" }} className='px-5 py-4 shadow'>
+        <div style={{ width: "500px", backgroundColor: "white", borderRadius: "8px" }} className='px-5 py-4 shadow'>
           <div className='my-3'>
             <label htmlFor="" className='form-label'><h6>Email</h6></label>
             <input type="email" name="email" onChange={handleLoginDetails} className='form-control' placeholder='Enter your email' />
@@ -58,7 +62,7 @@ const page = () => {
               placeholder='Enter your password' />
           </div>
           <div className='d-flex justify-content-between'>
-            <button onClick={handleLogin} className='btn btn-secondary mt-2'>Login</button>
+            <button onClick={handleLogin} className='btn btn-secondary mt-2' disabled={loader}>{loader ? "Loading..." : "Login"}</button>
             {/* <Link href="/admin-login/change-password" className='mt-4 text-primary' style={{ fontSize: "12px" }}><em>FORGOT PASSWORD?</em></Link> */}
           </div>
         </div>
