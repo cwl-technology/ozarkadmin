@@ -52,11 +52,12 @@ export default function page() {
                   <thead>
                     <tr>
                       <th className="text-center">sr. no.</th>
-                      <th className="">Name & Email</th>
-                      <th className="">Apply Date</th>
-                      <th className="">Subject</th>
-                      <th className="">About</th>
-                      <th className="">Resume</th>
+                      <th className="">Name & Contact</th>
+                      <th className="text-center">Apply Date</th>
+                      <th className="text-center">Position</th>
+                      <th className="text-center">Experience</th>
+                      <th className="text-center">Notice period</th>
+                      <th className="text-center">Resume</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -65,26 +66,33 @@ export default function page() {
                         <tr>
                           <td className="text-center text-muted">#{ind + 1}</td>
                           <td>
-                            <div className="widget-heading">
+                            <div className="widget-heading ">
                               {ele.name}
+                              <br />
+                              {ele.phone}
                               <br />
                               {ele.email}
                             </div>
 
                           </td>
                           <td>
-                            <div className="widget-heading">
+                            <div className="widget-heading text-center">
                               {ele.createdAt?.split("T")[0]}
                             </div>
                           </td>
                           <td>
-                            <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
-                              {ele.subject}
+                            <div className="widget-heading text-center" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                              {ele.position}
                             </div>
                           </td>
                           <td>
-                            <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
-                              {ele.about}
+                            <div className="widget-heading text-center" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                              {ele.experience}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="widget-heading text-center" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                              {ele.notice_period}
                             </div>
                           </td>
                           <td>

@@ -12,21 +12,15 @@ import { useForm } from "react-hook-form"
 const page = () => {
     const editor1 = useRef(null);
     const editor2 = useRef(null);
-    const editor3 = useRef(null);
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id");
 
     const [description1, setDescription1] = useState();
     const [description2, setDescription2] = useState();
-    const [description3, setDescription3] = useState();
 
     const [main_image, setMainImage] = useState();
-    const [image1, setImage1] = useState();
-    const [image2, setImage2] = useState();
-    const [image3, setImage3] = useState();
-
     const [soltionList, setSolutionList] = useState();
-    const [blogData, setBlogData] = useState();
-    const searchParams = useSearchParams();
-    const id = searchParams.get("id");
+    const [data, setData] = useState();
 
     const config = {
         height: 300,
@@ -41,25 +35,19 @@ const page = () => {
             const formdata = new FormData();
             formdata.append("solution_id", data.solution_id);
             formdata.append("heading", data.heading);
-            formdata.append("content", data.content);
             formdata.append("slug", data.slug);
-            formdata.append("blog_date", data.blog_date);
-            formdata.append("description1", description1 ? description1 : "");
-            formdata.append("description2", description2 ? description2 : "");
-            formdata.append("image1", image1);
-            formdata.append("image2", image2);
-            formdata.append("image3", image3);
-            formdata.append("main_image", main_image);
+            formdata.append("description", description1 ? description1 : "");
+            formdata.append("image", main_image);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description3 ? description3 : "");
+            formdata.append("meta_description", description2 ? description2 : "");
             formdata.append("id", id);
 
-            const res = await api.post("/blog/update_blog", formdata);
-            console.log(res.data);
+            const res = await api.post("/case_study/update_case_study", formdata);
+           
             if (res.data.status == 1) {
                 toast.success(res.data.message);
-                router.push("/admin/blogs/view");
+                router.push("/admin/case-study/view");
             } else {
                 toast.error(res.data.message);
             }
@@ -70,8 +58,14 @@ const page = () => {
 
     useEffect(() => {
         getSolutionList();
-        getBlogData();
+        getData();
     }, []);
+
+    useEffect(() => {
+        if (data) {
+            reset(data);
+        }
+    }, [data])
 
     const getSolutionList = async (req, res) => {
         try {
@@ -83,30 +77,21 @@ const page = () => {
             console.log(err);
         }
     }
-
-    const getBlogData = async () => {
+    const getData = async (req, res) => {
         try {
-            const res = await api.post("/blog/get_blog_data", {
+            const res = await api.post("/case_study/get_case_study_data", {
                 id: id
             });
+           console.log(res.data);
             if (res.data.status == 1) {
-                setBlogData(res.data.data);
-                setDescription1(res.data.data.description1)
-                setDescription2(res.data.data.description2)
-                setDescription3(res.data.data.meta_description)
+                setData(res.data.data);
+                setDescription1(res.data.data.description);
+                setDescription2(res.data.data.meta_description);
             }
         } catch (err) {
             console.log(err);
         }
     }
-
-    console.log(blogData);
-
-    useEffect(() => {
-        if (blogData) {
-            reset(blogData);
-        }
-    }, [blogData, reset]);
 
     return (
         <div className="app-main__inner">
@@ -114,7 +99,7 @@ const page = () => {
                 <div className="col-md-12 col-xl-12">
                     <div className="main-card mb-3 card">
                         <div className="card-header">
-                            Update Blog
+                            Update Case study
                         </div>
 
                         <div className="card-body">
@@ -130,13 +115,10 @@ const page = () => {
                                                 <label>
                                                     Solution Name
                                                 </label>
-                                                <select {...register("solution_id", {
-                                                    required: {
-                                                        value: true,
-                                                        message: "Please provide the solution name"
-                                                    }
-                                                })}
-                                                    className="form-control">
+                                                <select {...register("solution_id", { required: { value: true, message: "Please provide the solution name" } })}
+                                                    className="form-control"
+                                                >
+
                                                     <option hidden defaultChecked value={""}>Select solution</option>
                                                     {
                                                         soltionList?.map((ele) =>
@@ -157,12 +139,12 @@ const page = () => {
                                                     {...register("slug", {
                                                         required: {
                                                             value: true,
-                                                            message: "Please provide the blog slug"
+                                                            message: "Please provide the casestudy slug"
                                                         }
                                                     })}
                                                     type="text"
                                                     className="form-control"
-                                                    placeholder="Enter the blog slug"
+                                                    placeholder="Enter the casestudy slug"
                                                 />
                                                 {errors.slug ? <p style={{ color: "red" }}>{errors.slug.message}</p> : null}
                                             </div>
@@ -176,43 +158,18 @@ const page = () => {
                                                     {...register("heading", {
                                                         required: {
                                                             value: true,
-                                                            message: "Please provide the blog heading"
+                                                            message: "Please provide the casestudy heading"
                                                         }
                                                     })}
                                                     type="text"
                                                     className="form-control"
-                                                    placeholder="Enter the blog heading"
+                                                    placeholder="Enter the casestudy heading"
                                                 />
                                                 {errors.heading ? <p style={{ color: "red" }}>{errors.heading.message}</p> : null}
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content
-                                                </label>
-                                                <textarea
-                                                    {...register("content")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the blog content"
-                                                ></textarea>
-                                                
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Blog Date
-                                                </label>
-                                                <input
-                                                    {...register("blog_date")}
-                                                    type="date"
-                                                    className="form-control"
-                                                    placeholder="Enter the blog heading"
-                                                />
-                                            </div>
-                                        </div>
+
+
                                         <div className="col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
@@ -228,8 +185,7 @@ const page = () => {
                                         <div className="col-md-2 d-flex align-items-center">
                                             {
                                                 main_image ?
-                                                    <img src={URL.createObjectURL(main_image)} alt="" width={100} /> :
-                                                    <img src={blogData?.main_image} alt="" width={100} />
+                                                    <img src={URL.createObjectURL(main_image)} alt="" width={100} /> : <img src={data?.image} alt="" width={100}/>
 
                                             }
                                         </div>
@@ -250,90 +206,7 @@ const page = () => {
                                     </div>
                                 </fieldset>
 
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Images
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image1
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage1(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image1 ? (
-                                                <img src={URL.createObjectURL(image1)} alt="Uploaded Image" width="100px" />
-                                            ) : <img src={blogData?.image1} alt="" width={100} />}
 
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image2
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage2(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image2 ? (
-                                                <img src={URL.createObjectURL(image2)} alt="Uploaded Image" width="100px" />
-                                            ) : <img src={blogData?.image2} alt="" width={100} />
-                                            }
-
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image3
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage3(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image3 ? (
-                                                <img src={URL.createObjectURL(image3)} alt="Uploaded Image" width="100px" />
-                                            ) : <img src={blogData?.image3} alt="" width={100} />}
-
-                                        </div>
-                                    </div>
-                                </fieldset>
-
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Section
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-12">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Description
-                                                </label>
-                                                <JoditEditor
-                                                    ref={editor2}
-                                                    value={description2}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={(newContent) => setDescription2(newContent)}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
@@ -372,18 +245,18 @@ const page = () => {
                                                     Description
                                                 </label>
                                                 <JoditEditor
-                                                    ref={editor3}
-                                                    value={description3}
+                                                    ref={editor2}
+                                                    value={description2}
                                                     config={config}
                                                     tabIndex={1}
-                                                    onBlur={newContent => setDescription3(newContent)}
+                                                    onBlur={newContent => setDescription2(newContent)}
                                                 />
                                             </div>
                                         </div>
                                     </div>
                                 </fieldset>
 
-                                <button className="mt-2 px-3 btn btn-primary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>{isSubmitting ? "Update..." : "Update"}</button>
+                                <button className="mt-2 px-3 btn btn-primary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>{isSubmitting ? "Updating..." : "Update"}</button>
                             </form>
                         </div>
                     </div>

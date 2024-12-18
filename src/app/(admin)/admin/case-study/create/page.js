@@ -12,16 +12,11 @@ import { useForm } from "react-hook-form"
 const page = () => {
     const editor1 = useRef(null);
     const editor2 = useRef(null);
-    const editor3 = useRef(null);
-
+ 
     const [description1, setDescription1] = useState();
     const [description2, setDescription2] = useState();
-    const [description3, setDescription3] = useState();
 
     const [main_image, setMainImage] = useState();
-    const [image1, setImage1] = useState();
-    const [image2, setImage2] = useState();
-    const [image3, setImage3] = useState();
 
     const [soltionList, setSolutionList] = useState();
 
@@ -38,24 +33,18 @@ const page = () => {
             const formdata = new FormData();
             formdata.append("solution_id", data.solution_id);
             formdata.append("heading", data.heading);
-            formdata.append("content", data.content);
-            formdata.append("blog_date", data.blog_date);
             formdata.append("slug", data.slug);
-            formdata.append("description1", description1 ? description1 : "");
-            formdata.append("description2", description2 ? description2 : "");
-            formdata.append("image1", image1);
-            formdata.append("image2", image2);
-            formdata.append("image3", image3);
-            formdata.append("main_image", main_image);
+            formdata.append("description", description1 ? description1 : "");
+            formdata.append("image", main_image);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description3 ? description3 : "");
+            formdata.append("meta_description", description2 ? description2 : "");
 
-            const res = await api.post("/blog/create_blog", formdata);
+            const res = await api.post("/case_study/create_case_study", formdata);
             console.log(res.data);
             if (res.data.status == 1) {
                 toast.success(res.data.message);
-                router.push("/admin/blogs/view");
+                router.push("/admin/case-study/view");
             } else {
                 toast.error(res.data.message);
             }
@@ -85,7 +74,7 @@ const page = () => {
                 <div className="col-md-12 col-xl-12">
                     <div className="main-card mb-3 card">
                         <div className="card-header">
-                            Create Blog
+                            Create Case study
                         </div>
 
                         <div className="card-body">
@@ -124,11 +113,11 @@ const page = () => {
                                                 <input
                                                     {...register("slug",{required:{
                                                         value:true,
-                                                        message:"Please provide the blog slug"
+                                                        message:"Please provide the casestudy slug"
                                                     }})}
                                                     type="text"
                                                     className="form-control"
-                                                    placeholder="Enter the blog slug"
+                                                    placeholder="Enter the casestudy slug"
                                                 />
                                                 {errors.slug ? <p style={{ color: "red" }}>{errors.slug.message}</p> : null}
                                             </div>
@@ -141,42 +130,17 @@ const page = () => {
                                                 <input
                                                     {...register("heading",{required:{
                                                         value:true,
-                                                        message:"Please provide the blog heading"
+                                                        message:"Please provide the casestudy heading"
                                                     }})}
                                                     type="text"
                                                     className="form-control"
-                                                    placeholder="Enter the blog heading"
+                                                    placeholder="Enter the casestudy heading"
                                                 />
                                                 {errors.heading ? <p style={{ color: "red" }}>{errors.heading.message}</p> : null}
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content
-                                                </label>
-                                                <textarea
-                                                    {...register("content")}
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter the blog content"
-                                                ></textarea>
-                                                
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Blog Date
-                                                </label>
-                                                <input
-                                                    {...register("blog_date")}
-                                                    type="date"
-                                                    className="form-control"
-                                                    placeholder="Enter the blog heading"
-                                                />
-                                            </div>
-                                        </div>
+                                        
+                                    
                                         <div className="col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
@@ -213,89 +177,7 @@ const page = () => {
                                     </div>
                                 </fieldset>
 
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Images
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image1
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage1(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image1 ? (
-                                                <img src={URL.createObjectURL(image1)} alt="Uploaded Image" width="100px" />
-                                            ) : null}
-
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image2
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage2(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image2 ? (
-                                                <img src={URL.createObjectURL(image2)} alt="Uploaded Image" width="100px" />
-                                            ) : null}
-
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Image3
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => setImage3(e.target.files[0])}
-                                                    className="form-control"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
-                                            {image3 ? (
-                                                <img src={URL.createObjectURL(image3)} alt="Uploaded Image" width="100px" />
-                                            ) : null}
-
-                                        </div>
-                                    </div>
-                                </fieldset>
-
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Section
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-12">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Description
-                                                </label>
-                                                <JoditEditor
-                                                    ref={editor2}
-                                                    value={description2}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={(newContent) => setDescription2(newContent)}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                             
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
@@ -334,11 +216,11 @@ const page = () => {
                                                     Description
                                                 </label>
                                                 <JoditEditor
-                                                    ref={editor3}
-                                                    value={description3}
+                                                    ref={editor2}
+                                                    value={description2}
                                                     config={config}
                                                     tabIndex={1}
-                                                    onBlur={newContent => setDescription3(newContent)}
+                                                    onBlur={newContent => setDescription2(newContent)}
                                                 />
                                             </div>
                                         </div>

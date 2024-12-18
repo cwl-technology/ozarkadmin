@@ -324,10 +324,33 @@ export default function Menu() {
               <li>
                 <a href="#" onClick={() => handleMenu(14)}>
                   <i className="metismenu-icon pe-7s-diamond"></i>
-                  Enquiries
+                  Case study
                   <i className="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul className={activeId === 14 ? 'mm-collapse mm-show' : 'mm-collapse'}>
+                  <li>
+                    <Link href="/admin/case-study/create">
+                      <i className="metismenu-icon"></i>
+                      Create
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/admin/case-study/view">
+                      <i className="metismenu-icon"></i>
+                      View
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              
+
+              <li>
+                <a href="#" onClick={() => handleMenu(15)}>
+                  <i className="metismenu-icon pe-7s-diamond"></i>
+                  Enquiries
+                  <i className="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul className={activeId === 15 ? 'mm-collapse mm-show' : 'mm-collapse'}>
                   <li>
                     <Link href="/admin/enquiry/contact">
                       <i className="metismenu-icon"></i>
@@ -359,9 +382,9 @@ export default function Menu() {
               </li>
 
               <li>
-                <Link href="/admin/vision-and-values" className={currentPath === '/backend' ? 'mm-active' : ''}>
+                <Link href="/admin/our-expertise" className={currentPath === '/backend' ? 'mm-active' : ''}>
                   <i className="metismenu-icon pe-7s-diamond"></i>
-                  Vision & Values
+                  Our Expertise
                 </Link>
               </li>
 

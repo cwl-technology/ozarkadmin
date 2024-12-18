@@ -18,7 +18,7 @@ const page = () => {
     const [description2, setDescription2] = useState();
     const [description3, setDescription3] = useState();
 
-    const [breadcrumb_image, setBreadCrumbImage] = useState();
+    // const [breadcrumb_image, setBreadCrumbImage] = useState();
     const [image1, setImage1] = useState();
     const [image2, setImage2] = useState();
     const [image3, setImage3] = useState();
@@ -31,6 +31,7 @@ const page = () => {
     const [image10, setImage10] = useState();
     const [image11, setImage11] = useState();
     const [image12, setImage12] = useState();
+    const [image13, setImage13] = useState();
 
 
     const [data, setData] = useState();
@@ -55,8 +56,6 @@ const page = () => {
             formdata.append("content2", data.content2);
             formdata.append("subheading3", data.subheading3);
             formdata.append("content3", data.content3);
-            formdata.append("subheading4", data.subheading4);
-            formdata.append("content4", data.content4);
             formdata.append("image1", image1);
             formdata.append("image2", image2);
             formdata.append("image3", image3);
@@ -69,7 +68,8 @@ const page = () => {
             formdata.append("image10", image10);
             formdata.append("image11", image11);
             formdata.append("image12", image12);
-            formdata.append("breadcrumb_image", breadcrumb_image);
+            formdata.append("image13", image13);
+            // formdata.append("breadcrumb_image", breadcrumb_image);
 
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
@@ -127,7 +127,7 @@ const page = () => {
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)}>
 
-                                <fieldset class="border rounded p-3 px-4 mb-4">
+                                {/* <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
                                         Image
                                     </legend>
@@ -153,7 +153,7 @@ const page = () => {
 
                                         <div className="col-md-6"></div>
                                     </div>
-                                </fieldset>
+                                </fieldset> */}
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
@@ -276,19 +276,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Sub heading 2
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    {...register("subheading2")}
-                                                    className="form-control"
-                                                    placeholder="Enter the subheading"
-                                                />
-                                            </div>
-                                        </div>
+                                       
 
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
@@ -303,18 +291,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 2
-                                                </label>
-                                                <textarea type="text"
-                                                    {...register("content2")}
-                                                    className="form-control"
-                                                    placeholder="Enter the content">
-                                                </textarea>
-                                            </div>
-                                        </div>
+                                       
 
                                         <div className="col-md-4">
                                             <div className="position-relative form-group">
@@ -355,6 +332,25 @@ const page = () => {
                                             ) : <img src={data?.image6} alt="" width="100px" />}
                                         </div>
 
+                                        <div className="col-md-4">
+                                            <div className="position-relative form-group">
+                                                <label>
+                                                    Image 3
+                                                </label>
+                                                <input
+                                                    type="file"
+                                                    name="image13"
+                                                    className="form-control"
+                                                    onChange={(e) => setImage13(e.target.files[0])}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                            {image13 ? (
+                                                <img src={URL.createObjectURL(image13)} alt="" width="100px" />
+                                            ) : <img src={data?.image13} alt="" width="100px" />}
+                                        </div>
+
 
                                     </div>
                                 </fieldset>
@@ -371,7 +367,7 @@ const page = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    {...register("subheading3")}
+                                                    {...register("subheading2")}
                                                     className="form-control"
                                                     placeholder="Enter the subheading"
                                                 />
@@ -385,7 +381,7 @@ const page = () => {
                                                     Content
                                                 </label>
                                                 <textarea type="text"
-                                                    {...register("content3")}
+                                                    {...register("content2")}
                                                     className="form-control"
                                                     placeholder="Enter the content">
                                                 </textarea>
@@ -487,7 +483,7 @@ const page = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    {...register("subheading4")}
+                                                    {...register("subheading3")}
                                                     className="form-control"
                                                     placeholder="Enter the subheading"
                                                 />
@@ -501,7 +497,7 @@ const page = () => {
                                                     Content
                                                 </label>
                                                 <textarea type="text"
-                                                    {...register("content4")}
+                                                    {...register("content3")}
                                                     className="form-control"
                                                     placeholder="Enter the content">
                                                 </textarea>
