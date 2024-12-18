@@ -105,7 +105,7 @@ export default function page() {
           <div className="col-md-12 col-xl-12">
             <div className="main-card mb-3 card">
               <div className="card-header">
-                View Services
+                View Solutions
 
               </div>
               <div className="table-responsive">
