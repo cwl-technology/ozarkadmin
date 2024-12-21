@@ -159,18 +159,18 @@ export default function page() {
                         <label>
                           Content
                         </label>
-                        <input
+                        <textarea
                           value={inputData?.content}
                           name="content"
                           placeholder="Enter the content"
                           type="text"
                           className="form-control"
                           onChange={handleInputChange}
-                        />
+                        ></textarea>
                       </div>
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-7 col-md-4">
                       <div className="position-relative form-group">
                         <label>
                           Image
@@ -185,7 +185,7 @@ export default function page() {
                         />
                       </div>
                     </div>
-                    <div className="col-md-2 d-flex align-items-center justify-content-center" >
+                    <div className="col-5 col-md-2 d-flex align-items-center justify-content-center" >
                       {
                         imageData ?
                           <img src={URL.createObjectURL(imageData)} alt="" width={100} /> : <img src={inputData?.image} alt="" width={100} />

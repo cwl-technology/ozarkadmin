@@ -99,7 +99,7 @@ export default function page() {
                                                 <textarea name="content" id="" className="form-control" placeholder="Content" onChange={handleInputData}></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image
@@ -107,14 +107,13 @@ export default function page() {
                                                 <input
                                                     onChange={handleImageData}
                                                     name="image"
-                                                    placeholder="Enter the short description"
                                                     type="file"
                                                     accept="image/*"
                                                     className="form-control"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
                                             {
                                                 imageData ? <img src={URL.createObjectURL(imageData)} alt="" width={100}/> : null
                                             }

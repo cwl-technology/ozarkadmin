@@ -11,21 +11,11 @@ import { useForm } from "react-hook-form"
 
 const page = () => {
     const editor1 = useRef(null);
-    const editor2 = useRef(null);
-    const editor3 = useRef(null);
     const [description1, setDescription1] = useState();
     const [description2, setDescription2] = useState();
-    const [description3, setDescription3] = useState();
 
-    const [breadcrumb_image, setBreadCrumbImage] = useState();
     const [image1, setImage1] = useState();
-    const [image2, setImage2] = useState();
-    const [icon1, setIcon1] = useState();
-    const [icon2, setIcon2] = useState();
-    const [icon3, setIcon3] = useState();
-    const [icon4, setIcon4] = useState();
-    const [icon5, setIcon5] = useState();
-    const [icon6, setIcon6] = useState();
+   
 
     const [gallery1, setGallery1] = useState();
     const [gallery2, setGallery2] = useState();
@@ -41,7 +31,7 @@ const page = () => {
     const [gallery12, setGallery12] = useState();
     const [gallery13, setGallery13] = useState();
     const [gallery14, setGallery14] = useState();
-    
+
 
     const [data, setData] = useState();
 
@@ -59,35 +49,11 @@ const page = () => {
 
 
             formdata.append("description1", description1 ? description1 : "");
-            formdata.append("description2", description2 ? description2 : "");
 
             formdata.append("heading1", data.heading1);
-            formdata.append("heading2", data.heading2);
-            formdata.append("subheading1", data.subheading1);
-            formdata.append("content1", data.content1);
-            formdata.append("subheading2", data.subheading2);
-            formdata.append("content2", data.content2);
-            formdata.append("subheading3", data.subheading3);
-            formdata.append("content3", data.content3);
-            formdata.append("subheading4", data.subheading4);
-            formdata.append("content4", data.content4);
-            formdata.append("subheading5", data.subheading5);
-            formdata.append("content5", data.content5);
-            formdata.append("subheading6", data.subheading6);
-            formdata.append("content6", data.content6);
-            
+      
             formdata.append("image1", image1);
-            formdata.append("image2", image2);
-           
-            formdata.append("icon1", icon1);
-            formdata.append("icon2", icon2);
-            formdata.append("icon3", icon3);
-            formdata.append("icon4", icon4);
-            formdata.append("icon5", icon5);
-            formdata.append("icon6", icon6);
             
-            formdata.append("breadcrumb_image", breadcrumb_image);
-
             formdata.append("gallery1", gallery1);
             formdata.append("gallery2", gallery2);
             formdata.append("gallery3", gallery3);
@@ -102,15 +68,14 @@ const page = () => {
             formdata.append("gallery12", gallery12);
             formdata.append("gallery13", gallery13);
             formdata.append("gallery14", gallery14);
-    
+
 
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description2 ? description2 : "");
+            formdata.append("meta_description", data.meta_description);
             formdata.append("id", data._id)
 
             const res = await api.post("/social_responsibility/update_social_responsibility", formdata);
-            console.log(res.data);
             if (res.data.status == 1) {
                 toast.success(res.data.message);
             } else {
@@ -135,11 +100,8 @@ const page = () => {
     const getData = async () => {
         try {
             const res = await api.get("/social_responsibility/get_social_responsibility");
-            console.log(res.data);
             setData(res.data.data);
             setDescription1(res.data.data.description1);
-            setDescription2(res.data.data.description2);
-            setDescription3(res.data.data.meta_description);
         } catch (err) {
             console.log(err);
         }
@@ -159,33 +121,6 @@ const page = () => {
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)}>
 
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Image
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-4">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Bread crumb image
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    name="breadcrumb_image"
-                                                    className="form-control"
-                                                    onChange={(e) => setBreadCrumbImage(e.target.files[0])}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
-                                            {breadcrumb_image ? (
-                                                <img src={URL.createObjectURL(breadcrumb_image)} alt="" width="100px" />
-                                            ) : <img src={data?.breadcrumb_image} alt="" width="100px" />}
-                                        </div>
-
-                                        <div className="col-md-6"></div>
-                                    </div>
-                                </fieldset>
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
@@ -206,7 +141,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image
@@ -216,13 +151,14 @@ const page = () => {
                                                     name="image1"
                                                     className="form-control"
                                                     onChange={(e) => setImage1(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {image1 ? (
-                                                <img src={URL.createObjectURL(image1)} alt="" width="100px" />
-                                            ) : <img src={data?.image1} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(image1)} alt="" width="50px" />
+                                            ) : <img src={data?.image1} alt="" width="50px" />}
                                         </div>
 
                                         <div className="col-md-12">
@@ -247,125 +183,14 @@ const page = () => {
 
                                 </fieldset>
 
-                                <fieldset class="border rounded p-3 px-4 mb-4">
-                                    <legend class="float-none w-auto px-3">
-                                        Section
-                                    </legend>
-                                    <div className="form-row">
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Heading
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    {...register("heading2")}
-                                                    className="form-control"
-                                                    placeholder="Enter the heading"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6"></div>
-
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Sub heading 1
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    {...register("subheading1")}
-                                                    className="form-control"
-                                                    placeholder="Enter the heading"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Sub heading 2
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    {...register("subheading2")}
-                                                    className="form-control"
-                                                    placeholder="Enter the heading"
-                                                />
-                                            </div>
-                                        </div>
-
-
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 1
-                                                </label>
-                                                <textarea type="text"
-                                                    {...register("content1")}
-                                                    className="form-control"
-                                                    placeholder="Enter the content">
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Content 2
-                                                </label>
-                                                <textarea type="text"
-                                                    {...register("content2")}
-                                                    className="form-control"
-                                                    placeholder="Enter the content">
-                                                </textarea>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-4">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 1
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    name="icon1"
-                                                    className="form-control"
-                                                    onChange={(e) => setIcon1(e.target.files[0])}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
-                                            {icon1 ? (
-                                                <img src={URL.createObjectURL(icon1)} alt="" width="100px" />
-                                            ) : <img src={data?.icon1} alt="" width="100px" />}
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="position-relative form-group">
-                                                <label>
-                                                    Icon 2
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    name="icon2"
-                                                    className="form-control"
-                                                    onChange={(e) => setIcon2(e.target.files[0])}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
-                                            {icon2 ? (
-                                                <img src={URL.createObjectURL(icon2)} alt="" width="100px" />
-                                            ) : <img src={data?.icon2} alt="" width="100px" />}
-                                        </div>
-
-                                    </div>
-                                </fieldset>
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
                                         Gallery section
                                     </legend>
                                     <div className="form-row">
-                                        <div className="col-md-4">
+                                        
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 1
@@ -374,18 +199,20 @@ const page = () => {
                                                     type="file"
                                                     name="gallery1"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery1(e.target.files[0])}
+                                                    onChange={(e) => setGallery1(e.target.files[0])}
+                                                    accept="image/*"
+                                                    
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery1 ? (
-                                                <img src={URL.createObjectURL(gallery1)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery1} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery1)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery1} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 2
@@ -394,18 +221,19 @@ const page = () => {
                                                     type="file"
                                                     name="gallery2"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery2(e.target.files[0])}
+                                                    onChange={(e) => setGallery2(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery2 ? (
-                                                <img src={URL.createObjectURL(gallery2)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery2} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery2)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery2} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 3
@@ -414,18 +242,19 @@ const page = () => {
                                                     type="file"
                                                     name="gallery3"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery3(e.target.files[0])}
+                                                    onChange={(e) => setGallery3(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery3 ? (
-                                                <img src={URL.createObjectURL(gallery3)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery3} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery3)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery3} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 4
@@ -434,18 +263,21 @@ const page = () => {
                                                     type="file"
                                                     name="gallery4"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery4(e.target.files[0])}
+                                                    onChange={(e) => setGallery4(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery4 ? (
-                                                <img src={URL.createObjectURL(gallery4)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery4} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery4)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery4} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+                                        <div className="col-12"> 
+                                            <hr />
+                                        </div>
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 5
@@ -454,18 +286,19 @@ const page = () => {
                                                     type="file"
                                                     name="gallery5"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery5(e.target.files[0])}
+                                                    onChange={(e) => setGallery5(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery5 ? (
-                                                <img src={URL.createObjectURL(gallery5)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery5} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery5)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery5} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 6
@@ -474,18 +307,19 @@ const page = () => {
                                                     type="file"
                                                     name="gallery6"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery6(e.target.files[0])}
+                                                    onChange={(e) => setGallery6(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery6 ? (
-                                                <img src={URL.createObjectURL(gallery6)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery6} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery6)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery6} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 7
@@ -494,18 +328,23 @@ const page = () => {
                                                     type="file"
                                                     name="gallery7"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery7(e.target.files[0])}
+                                                    onChange={(e) => setGallery7(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery7 ? (
-                                                <img src={URL.createObjectURL(gallery7)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery7} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery7)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery7} alt="" width="50px" />}
+                                        </div>
+                                        <div className="col-md-6"></div>
+
+                                        <div className="col-12"> 
+                                            <hr />
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 8
@@ -514,18 +353,18 @@ const page = () => {
                                                     type="file"
                                                     name="gallery8"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery8(e.target.files[0])}
+                                                    onChange={(e) => setGallery8(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery8 ? (
-                                                <img src={URL.createObjectURL(gallery8)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery8} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery8)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery8} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 9
@@ -534,18 +373,18 @@ const page = () => {
                                                     type="file"
                                                     name="gallery9"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery9(e.target.files[0])}
+                                                    onChange={(e) => setGallery9(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery9 ? (
-                                                <img src={URL.createObjectURL(gallery9)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery9} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery9)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery9} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 10
@@ -554,18 +393,18 @@ const page = () => {
                                                     type="file"
                                                     name="gallery10"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery10(e.target.files[0])}
+                                                    onChange={(e) => setGallery10(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery10 ? (
-                                                <img src={URL.createObjectURL(gallery10)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery10} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery10)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery10} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 11
@@ -574,18 +413,22 @@ const page = () => {
                                                     type="file"
                                                     name="gallery11"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery11(e.target.files[0])}
+                                                    onChange={(e) => setGallery11(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery11 ? (
-                                                <img src={URL.createObjectURL(gallery11)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery11} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery11)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery11} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+                                        <div className="col-12"> 
+                                            <hr />
+                                        </div>
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 12
@@ -594,18 +437,19 @@ const page = () => {
                                                     type="file"
                                                     name="gallery12"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery12(e.target.files[0])}
+                                                    onChange={(e) => setGallery12(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery12 ? (
-                                                <img src={URL.createObjectURL(gallery12)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery12} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery12)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery12} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 13
@@ -614,18 +458,19 @@ const page = () => {
                                                     type="file"
                                                     name="gallery13"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery13(e.target.files[0])}
+                                                    onChange={(e) => setGallery13(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery13 ? (
-                                                <img src={URL.createObjectURL(gallery13)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery13} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery13)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery13} alt="" width="50px" />}
                                         </div>
 
-                                        
-                                        <div className="col-md-4">
+
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 14
@@ -634,27 +479,28 @@ const page = () => {
                                                     type="file"
                                                     name="gallery14"
                                                     className="form-control"
-                                                    onChange={(e)=>setGallery14(e.target.files[0])}
+                                                    onChange={(e) => setGallery14(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {gallery14 ? (
-                                                <img src={URL.createObjectURL(gallery14)} alt="" width="100px" />
-                                            ) : <img src={data?.gallery14} alt="" width="100px" />}
+                                                <img src={URL.createObjectURL(gallery14)} alt="" width="50px" />
+                                            ) : <img src={data?.gallery14} alt="" width="50px" />}
                                         </div>
 
-                                        
+
                                     </div>
                                 </fieldset>
 
-                                <fieldset class="border rounded p-3 px-4 mb-4">
+                                {/* <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
                                         Section
                                     </legend>
                                     <div className="form-row">
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image
@@ -667,7 +513,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {image2 ? (
                                                 <img src={URL.createObjectURL(image2)} alt="" width="100px" />
                                             ) : <img src={data?.image2} alt="" width="100px" />}
@@ -741,7 +587,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon 1
@@ -754,12 +600,12 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon3 ? (
                                                 <img src={URL.createObjectURL(icon3)} alt="" width="100px" />
                                             ) : <img src={data?.icon3} alt="" width="100px" />}
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon 2
@@ -772,7 +618,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon4 ? (
                                                 <img src={URL.createObjectURL(icon4)} alt="" width="100px" />
                                             ) : <img src={data?.icon4} alt="" width="100px" />}
@@ -791,7 +637,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className=" col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Sub heading 4
@@ -831,7 +677,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon 3
@@ -844,12 +690,12 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon5 ? (
                                                 <img src={URL.createObjectURL(icon5)} alt="" width="100px" />
                                             ) : <img src={data?.icon5} alt="" width="100px" />}
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon 4
@@ -862,14 +708,14 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon6 ? (
                                                 <img src={URL.createObjectURL(icon6)} alt="" width="100px" />
                                             ) : <img src={data?.icon6} alt="" width="100px" />}
                                         </div>
 
                                     </div>
-                                </fieldset>
+                                </fieldset> */}
 
                                 <fieldset class="border rounded p-3 px-4 mb-4">
                                     <legend class="float-none w-auto px-3">
@@ -890,32 +736,34 @@ const page = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                        </div>
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Keyword
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("keyword")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the keyword"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-12">
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Description
                                                 </label>
-                                                <JoditEditor
-                                                    ref={editor3}
-                                                    value={description3}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={newContent => setDescription3(newContent)}
-                                                />
+                                                <textarea
+                                                    {...register("meta_description")}
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter the keyword"
+                                                ></textarea>
                                             </div>
                                         </div>
+
                                     </div>
                                 </fieldset>
 

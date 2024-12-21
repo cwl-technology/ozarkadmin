@@ -17,6 +17,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7.53.2",
+    "react-hot-toast": "^2.4.1",
     "react-toastify": "^10.0.5",
     "simple-datatables": "^9.1.0",
     "sweetalert2": "^11.14.1",

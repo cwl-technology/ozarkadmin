@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({ handleToggle, mobile }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -14,6 +14,7 @@ export default function Header() {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    window.history.replaceState(null, '', '/admin-login')
     router.push("/admin-login");
   }
 
@@ -32,7 +33,8 @@ export default function Header() {
           <div>
             <button
               type="button"
-              className="hamburger hamburger--elastic mobile-toggle-nav"
+              className={`hamburger hamburger--elastic mobile-toggle-nav ${mobile ? "is-active" : ""}`}
+              onClick={handleToggle}
             >
               <span className="hamburger-box">
                 <span className="hamburger-inner"></span>

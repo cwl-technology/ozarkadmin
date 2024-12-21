@@ -151,13 +151,13 @@ export default function Menu() {
                       <li>
                         <Link href="/admin/about-us/team/team-page">
                           <i className="metismenu-icon"></i>
-                          team page
+                          Page content
                         </Link>
                       </li>
                       <li>
                         <Link href="/admin/about-us/team/team-member">
                           <i className="metismenu-icon"></i>
-                          team member
+                          Team member
                         </Link>
                       </li>
                     </ul>
@@ -293,7 +293,7 @@ export default function Menu() {
                   <li>
                     <Link href="/admin/careers/career-page">
                       <i className="metismenu-icon"></i>
-                      Career page
+                      Page content
                     </Link>
                   </li>
 
@@ -324,7 +324,7 @@ export default function Menu() {
               <li>
                 <a href="#" onClick={() => handleMenu(14)}>
                   <i className="metismenu-icon pe-7s-diamond"></i>
-                  Case study
+                  Case Study
                   <i className="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul className={activeId === 14 ? 'mm-collapse mm-show' : 'mm-collapse'}>
@@ -370,7 +370,7 @@ export default function Menu() {
               <li>
                 <Link href="/admin/social-responsibility" className={currentPath === '/backend' ? 'mm-active' : ''}>
                   <i className="metismenu-icon pe-7s-diamond"></i>
-                  Social responsibility
+                  Social Responsibility
                 </Link>
               </li>
 
@@ -385,6 +385,13 @@ export default function Menu() {
                 <Link href="/admin/our-expertise" className={currentPath === '/backend' ? 'mm-active' : ''}>
                   <i className="metismenu-icon pe-7s-diamond"></i>
                   Our Expertise
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/admin/page-title" className={currentPath === '/backend' ? 'mm-active' : ''}>
+                  <i className="metismenu-icon pe-7s-diamond"></i>
+                  Manage Page Title
                 </Link>
               </li>
 

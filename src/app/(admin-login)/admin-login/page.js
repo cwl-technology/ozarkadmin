@@ -1,16 +1,9 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
-
-
+import React, {useState } from 'react'
 import api from '@/_config/config';
-import axios from 'axios'
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation'
-import Link from "next/link"
-
-
-
 
 const page = () => {
   const [adminLogin, setAdminLogin] = useState({})
@@ -19,6 +12,7 @@ const page = () => {
   const router = useRouter()
 
   const handleLoginDetails = (e) => {
+    e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
     setAdminLogin({ ...adminLogin, [name]: value })

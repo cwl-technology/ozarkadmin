@@ -11,10 +11,8 @@ import { useForm } from "react-hook-form"
 
 const page = () => {
     const editor1 = useRef(null);
-    const editor2 = useRef(null);
  
     const [description1, setDescription1] = useState();
-    const [description2, setDescription2] = useState();
 
     const [main_image, setMainImage] = useState();
 
@@ -38,7 +36,7 @@ const page = () => {
             formdata.append("image", main_image);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description2 ? description2 : "");
+            formdata.append("meta_description", data.meta_description);
 
             const res = await api.post("/case_study/create_case_study", formdata);
             console.log(res.data);
@@ -141,7 +139,7 @@ const page = () => {
                                         </div>
                                         
                                     
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Main Image
@@ -150,10 +148,11 @@ const page = () => {
                                                     type="file"
                                                     className="form-control"
                                                     onChange={(e) => setMainImage(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
                                             {
                                                 main_image ?
                                                     <img src={URL.createObjectURL(main_image)} alt="" width={100} /> : null
@@ -198,32 +197,34 @@ const page = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                        </div>
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Keyword
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("keyword")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the keyword"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-12">
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Description
                                                 </label>
-                                                <JoditEditor
-                                                    ref={editor2}
-                                                    value={description2}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={newContent => setDescription2(newContent)}
-                                                />
+                                                <textarea
+                                                    {...register("meta_description")}
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter the keyword"
+                                                ></textarea>
                                             </div>
                                         </div>
+
                                     </div>
                                 </fieldset>
 

@@ -12,12 +12,10 @@ const page = () => {
     const editor1 = useRef(null);
     const editor2 = useRef(null);
     const editor3 = useRef(null);
-    const editor4 = useRef(null);
 
     const [description1, setDescription1] = useState();
     const [description2, setDescription2] = useState();
     const [description3, setDescription3] = useState();
-    const [description4, setDescription4] = useState();
 
     const [benefitsImage, setBenefitsImage] = useState();
     const [adviceImage, setAdviceImage] = useState();
@@ -52,7 +50,7 @@ const page = () => {
 
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description4 ? description4 : "");
+            formdata.append("meta_description", data.meta_description);
             formdata.append("id", data._id)
 
             const res = await api.post("/our_expertise/update_our_expertise", formdata);
@@ -86,7 +84,6 @@ const page = () => {
             setDescription1(res.data.data?.benefits_description);
             setDescription2(res.data.data?.advice_description);
             setDescription3(res.data.data?.audit_description);
-            setDescription4(res.data.data?.meta_description);
 
         } catch (err) {
             console.log(err);
@@ -126,7 +123,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Benefits Image
@@ -135,10 +132,11 @@ const page = () => {
                                                     type="file"
                                                     onChange={(e) => setBenefitsImage(e.target.files[0])}
                                                     className="form-control"
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {benefitsImage ? (
                                                 <img src={URL.createObjectURL(benefitsImage)} alt="" width="100px" />
                                             ) : <img src={data?.benefits_image} alt="" width="100px" />}
@@ -173,7 +171,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Advice Image
@@ -182,10 +180,11 @@ const page = () => {
                                                     type="file"
                                                     onChange={(e) => setAdviceImage(e.target.files[0])}
                                                     className="form-control"
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {adviceImage ? (
                                                 <img src={URL.createObjectURL(adviceImage)} alt="" width="100px" />
                                             ) : <img src={data?.advice_image} alt="" width="100px" />}
@@ -220,7 +219,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Audit Image
@@ -229,10 +228,11 @@ const page = () => {
                                                     type="file"
                                                     onChange={(e) => setAuditImage(e.target.files[0])}
                                                     className="form-control"
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {auditImage ? (
                                                 <img src={URL.createObjectURL(auditImage)} alt="" width="100px" />
                                             ) : <img src={data?.audit_image} alt="" width="100px" />}
@@ -277,32 +277,34 @@ const page = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                        </div>
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Keyword
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("keyword")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the keyword"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-12">
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Description
                                                 </label>
-                                                <JoditEditor
-                                                    ref={editor4}
-                                                    value={description4}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={newContent => setDescription4(newContent)}
-                                                />
+                                                <textarea
+                                                    {...register("meta_description")}
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter the keyword"
+                                                ></textarea>
                                             </div>
                                         </div>
+
                                     </div>
                                 </fieldset>
 

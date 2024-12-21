@@ -25,18 +25,24 @@ export default function AdminLayout({ children }) {
     }
   }, [])
 
+  useEffect(() => { document.title = "Admin | Ozark.co"; }, [])
+
   // if (loading) {
   //   return <div>
   //     Loading...
   //   </div>
   // }
 
+  const [mobile, setMobile] = useState(false);
+  const handleToggle = () => {
+    setMobile(!mobile);
+  }
 
   return (
     <html lang="en">
       <body>
-        <div className="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-          <Header />
+        <div className={`app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header ${mobile ? "sidebar-mobile-open" : ""}`}>
+          <Header handleToggle={handleToggle} mobile={mobile} />
           <div className="app-main">
             <Menu />
             <div className="app-main__outer">
@@ -45,8 +51,8 @@ export default function AdminLayout({ children }) {
             </div>
           </div>
         </div>
-        <ToastContainer 
-        autoClose={2000}/>
+        <ToastContainer
+          autoClose={2000} />
       </body>
     </html>
   );

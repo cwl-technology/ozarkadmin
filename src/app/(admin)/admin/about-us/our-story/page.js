@@ -14,7 +14,6 @@ const page = () => {
     const editor3 = useRef(null);
 
     const [description1, setDescription1] = useState();
-    const [description3, setDescription3] = useState();
 
     const [image, setImage] = useState();
     // const [image2, setImage2] = useState();
@@ -59,7 +58,7 @@ const page = () => {
             formdata.append("icon4", icon4);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description3 ? description3 : "");
+            formdata.append("meta_description", data.meta_description);
             formdata.append("id",data._id)
 
             // console.log(res.data);
@@ -94,7 +93,6 @@ const page = () => {
             const res = await api.get("/ourstory/get_story_data");
             setStoryData(res.data.data);
             setDescription1(res.data.data.description);
-            setDescription3(res.data.data.meta_description);
         } catch (err) {
             console.log(err);
         }
@@ -131,7 +129,7 @@ const page = () => {
                                                     {...register("heading")}
                                                     type="text"
                                                     className="form-control"
-                                                    placeholder="Enter the solution heading"
+                                                    placeholder="Enter the heading"
                                                 />
                                             </div>
                                         </div>
@@ -171,7 +169,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon1
@@ -183,7 +181,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon1 ? (
                                                 <img src={URL.createObjectURL(icon1)} alt="Uploaded Image" width="100px" />
                                             ) : <img src={storyData?.icon1} alt="Uploaded Image" width="100px" />}
@@ -219,7 +217,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon2
@@ -231,7 +229,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon2 ? (
                                                 <img src={URL.createObjectURL(icon2)} alt="Uploaded Image" width="100px" />
                                             ) : <img src={storyData?.icon2} alt="Uploaded Image" width="100px" />}
@@ -267,7 +265,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon3
@@ -279,7 +277,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon3 ? (
                                                 <img src={URL.createObjectURL(icon3)} alt="Uploaded Image" width="100px" />
                                             ) : <img src={storyData?.icon3} alt="Uploaded Image" width="100px" />}
@@ -315,7 +313,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Icon4
@@ -327,7 +325,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center justify-content-center">
                                             {icon4 ? (
                                                 <img src={URL.createObjectURL(icon4)} alt="Uploaded Image" width="100px" />
                                             ) : <img src={storyData?.icon4} alt="Uploaded Image" width="100px" />}
@@ -358,7 +356,7 @@ const page = () => {
                                         Images
                                     </legend>
                                     <div className="form-row">
-                                        <div className="col-md-6">
+                                        <div className="col-7 col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image
@@ -370,7 +368,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-6 d-flex align-items-center justify-content-center">
                                             {image ? (
                                                 <img src={URL.createObjectURL(image)} alt="Uploaded Image" width="100px" />
                                             ) : <img src={storyData?.image} alt="Uploaded Image" width="100px" />}
@@ -434,32 +432,34 @@ const page = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                        </div>
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Keyword
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("keyword")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the keyword"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-12">
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Description
                                                 </label>
-                                                <JoditEditor
-                                                    ref={editor3}
-                                                    value={description3}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={newContent => setDescription3(newContent)}
-                                                />
+                                                <textarea
+                                                    {...register("meta_description")}
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter the keyword"
+                                                ></textarea>
                                             </div>
                                         </div>
+
                                     </div>
                                 </fieldset>
 

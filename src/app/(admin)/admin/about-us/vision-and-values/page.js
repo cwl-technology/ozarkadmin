@@ -11,11 +11,9 @@ import { useForm } from "react-hook-form"
 const page = () => {
     const editor1 = useRef(null);
     const editor2 = useRef(null);
-    const editor3 = useRef(null);
 
     const [description1, setDescription1] = useState();
     const [description2, setDescription2] = useState();
-    const [description3, setDescription3] = useState();
 
     const [image1, setImage1] = useState();
     const [image2, setImage2] = useState();
@@ -50,7 +48,7 @@ const page = () => {
             formdata.append("image4", image4);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description3 ? description3 : "");
+            formdata.append("meta_description", data.meta_description);
             formdata.append("id", data._id)
 
             const res = await api.post("/vision_and_value/update_vision_and_values", formdata);
@@ -83,7 +81,6 @@ const page = () => {
                 setData(res.data.data);
                 setDescription1(res.data.data.description1)
                 setDescription2(res.data.data.main_description)
-                setDescription3(res.data.data.meta_description)
             }
             console.log(res.data);
         } catch (err) {
@@ -197,7 +194,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 1
@@ -209,12 +206,12 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
                                             {
-                                                image1 ? <img src={URL.createObjectURL(image1)} alt="" width={50} /> : <img src={data?.image1} alt="" width={50} />
+                                                image1 ? <img src={URL.createObjectURL(image1)} alt="" width={50} /> : <img src={data?.image1} alt="" width={70} />
                                             }
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 2
@@ -226,10 +223,10 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
 
                                             {
-                                                image2 ? <img src={URL.createObjectURL(image2)} alt="" width={50} /> : <img src={data?.image2} alt="" width={50} />
+                                                image2 ? <img src={URL.createObjectURL(image2)} alt="" width={50} /> : <img src={data?.image2} alt="" width={70} />
                                             }
                                         </div>
 
@@ -259,12 +256,12 @@ const page = () => {
                                                 <label>
                                                     Content
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("main_content")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the content"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
 
@@ -283,7 +280,7 @@ const page = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 1
@@ -295,12 +292,12 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
                                                 {
-                                                    image3 ? <img src={URL.createObjectURL(image3)} alt="" width={50}/> : <img src={data?.image3} alt="" width={50}/>
+                                                    image3 ? <img src={URL.createObjectURL(image3)} alt="" width={50}/> : <img src={data?.image3} alt="" width={70}/>
                                                 }
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image 2
@@ -312,9 +309,9 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
                                                 {
-                                                    image4 ? <img src={URL.createObjectURL(image4)} alt="" width={50}/> : <img src={data?.image4} alt="" width={50}/>
+                                                    image4 ? <img src={URL.createObjectURL(image4)} alt="" width={50}/> : <img src={data?.image4} alt="" width={70}/>
                                                 }
                                         </div>
                                     </div>
@@ -339,34 +336,37 @@ const page = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                        </div>
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Keyword
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("keyword")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the keyword"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-12">
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Description
                                                 </label>
-                                                <JoditEditor
-                                                    ref={editor3}
-                                                    value={description3}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={newContent => setDescription3(newContent)}
-                                                />
+                                                <textarea
+                                                    {...register("meta_description")}
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter the keyword"
+                                                ></textarea>
                                             </div>
                                         </div>
+
                                     </div>
                                 </fieldset>
+
                                 <button className="mt-2 px-3 btn btn-primary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>{isSubmitting ? "Updating..." : "Update"}</button>
                             </form>
                         </div>

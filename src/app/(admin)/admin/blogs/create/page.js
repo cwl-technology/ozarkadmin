@@ -12,11 +12,9 @@ import { useForm } from "react-hook-form"
 const page = () => {
     const editor1 = useRef(null);
     const editor2 = useRef(null);
-    const editor3 = useRef(null);
 
     const [description1, setDescription1] = useState();
     const [description2, setDescription2] = useState();
-    const [description3, setDescription3] = useState();
 
     const [main_image, setMainImage] = useState();
     const [image1, setImage1] = useState();
@@ -49,7 +47,7 @@ const page = () => {
             formdata.append("main_image", main_image);
             formdata.append("title", data.title);
             formdata.append("keyword", data.keyword);
-            formdata.append("meta_description", description3 ? description3 : "");
+            formdata.append("meta_description", data.meta_description);
 
             const res = await api.post("/blog/create_blog", formdata);
             console.log(res.data);
@@ -177,7 +175,7 @@ const page = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Main Image
@@ -186,10 +184,11 @@ const page = () => {
                                                     type="file"
                                                     className="form-control"
                                                     onChange={(e) => setMainImage(e.target.files[0])}
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-2 d-flex align-items-center">
+                                        <div className="col-5 col-md-2 d-flex align-items-center">
                                             {
                                                 main_image ?
                                                     <img src={URL.createObjectURL(main_image)} alt="" width={100} /> : null
@@ -218,7 +217,7 @@ const page = () => {
                                         Images
                                     </legend>
                                     <div className="form-row">
-                                        <div className="col-md-6">
+                                        <div className="col-7 col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image1
@@ -227,16 +226,17 @@ const page = () => {
                                                     type="file"
                                                     onChange={(e) => setImage1(e.target.files[0])}
                                                     className="form-control"
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-6 d-flex align-items-center justify-content-center">
                                             {image1 ? (
                                                 <img src={URL.createObjectURL(image1)} alt="Uploaded Image" width="100px" />
                                             ) : null}
 
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-7 col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image2
@@ -245,16 +245,17 @@ const page = () => {
                                                     type="file"
                                                     onChange={(e) => setImage2(e.target.files[0])}
                                                     className="form-control"
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-6 d-flex align-items-center justify-content-center">
                                             {image2 ? (
                                                 <img src={URL.createObjectURL(image2)} alt="Uploaded Image" width="100px" />
                                             ) : null}
 
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-7 col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Image3
@@ -263,10 +264,11 @@ const page = () => {
                                                     type="file"
                                                     onChange={(e) => setImage3(e.target.files[0])}
                                                     className="form-control"
+                                                    accept="image/*"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-md-6 d-flex align-items-center justify-content-center">
+                                        <div className="col-5 col-md-6 d-flex align-items-center justify-content-center">
                                             {image3 ? (
                                                 <img src={URL.createObjectURL(image3)} alt="Uploaded Image" width="100px" />
                                             ) : null}
@@ -316,32 +318,34 @@ const page = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                        </div>
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Keyword
                                                 </label>
-                                                <input
+                                                <textarea
                                                     {...register("keyword")}
                                                     type="text"
                                                     className="form-control"
                                                     placeholder="Enter the keyword"
-                                                />
+                                                ></textarea>
                                             </div>
                                         </div>
-                                        <div className="col-md-12">
+                                        <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
                                                     Description
                                                 </label>
-                                                <JoditEditor
-                                                    ref={editor3}
-                                                    value={description3}
-                                                    config={config}
-                                                    tabIndex={1}
-                                                    onBlur={newContent => setDescription3(newContent)}
-                                                />
+                                                <textarea
+                                                    {...register("meta_description")}
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter the keyword"
+                                                ></textarea>
                                             </div>
                                         </div>
+
                                     </div>
                                 </fieldset>
 

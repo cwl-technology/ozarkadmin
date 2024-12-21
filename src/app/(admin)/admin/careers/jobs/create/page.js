@@ -18,8 +18,6 @@ export default function page() {
         setInputData({ ...inputData, [name]: value });
     }
 
-    console.log(inputData);
-
     const createJob = async (e) => {
         try {
             e.preventDefault();
@@ -29,7 +27,6 @@ export default function page() {
                 job_description: inputData?.job_description,
                 available_posts: inputData?.available_posts,
                 skills: skills
-
             });
 
             if (res.data.status === 1) {
