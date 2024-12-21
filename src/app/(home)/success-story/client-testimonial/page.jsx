@@ -2,6 +2,7 @@ import React from 'react'
 import Testimonial from './Testimonial';
 import api from '@/_config/config';
 
+export const dynamic = 'force-dynamic'
 export const generateMetadata = async () => {
     try {
       const res = await api.post("/page_title_data/get_page_title_by_type",{

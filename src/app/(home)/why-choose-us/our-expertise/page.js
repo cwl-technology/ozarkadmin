@@ -2,6 +2,7 @@ import React from 'react'
 import OurExpertise from './OurExpertise'
 import api from '@/_config/config';
 
+export const dynamic = 'force-dynamic'
 
 export const generateMetadata = async () => {
   try {

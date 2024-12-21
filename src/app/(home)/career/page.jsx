@@ -2,6 +2,8 @@ import React from 'react'
 import Career from './Career'
 import api from '@/_config/config';
 
+export const dynamic = 'force-dynamic'
+
 export const generateMetadata = async () => {
   try {
     const res = await api.get("/career/get_career_page");

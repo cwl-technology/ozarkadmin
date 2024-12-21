@@ -1,12 +1,11 @@
 import api from '@/_config/config';
 import React from 'react'
 
-
+export const dynamic = 'force-dynamic'
 
 const getData = async () => {
     try {
         const res = await api.get("/social_responsibility/get_social_responsibility");
-        console.log(res.data)
         return res.data.data
     } catch (err) {
         console.log(err);

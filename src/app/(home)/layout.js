@@ -4,6 +4,7 @@ import Header from "@/_components/Header";
 import { Toaster } from "react-hot-toast";
 import api from "@/_config/config";
 
+export const dynamic = 'force-dynamic'
 
 export const generateMetadata = async () => {
   try {

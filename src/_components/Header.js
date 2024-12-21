@@ -100,7 +100,7 @@ function Header() {
                                                             <li><Link href="/about/our_story">Our Story </Link></li>
                                                             <li><Link href="/about/our_team">Leadership Team </Link></li>
                                                             {/* <li><Link href="#">Mission </Link></li> */}
-                                                            <li><Link href="/about/vision">Vision & Values</Link></li>
+                                                            <li><Link href="/about/vision-and-value">Vision & Values</Link></li>
                                                             {/* <li><Link href="#">Partners</Link></li>
                                                             <li><Link href="#">CSR </Link></li> */}
                                                         </ul>

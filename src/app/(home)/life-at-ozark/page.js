@@ -1,6 +1,7 @@
 import api from '@/_config/config';
 import React from 'react'
 
+export const dynamic = 'force-dynamic'
 const getData = async () => {
     try {
         const res = await api.get("/life/get_life_ozark_data");

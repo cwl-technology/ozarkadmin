@@ -4,6 +4,7 @@ import api from '@/_config/config';
 import React from 'react'
 
 
+export const dynamic = 'force-dynamic'
 
 const getData = async () => {
     try {
