@@ -131,7 +131,7 @@ function Service() {
                                                 alt="backgroundimage" />
                                                 <div className="top_section">
                                                     <h3>Have Questions?</h3>
-                                                    <p>Nothing prevents our being to what we like. </p>
+                                                    <p>We're here to help! Reach out to us for any inquiries</p>
                                                 </div>
                                                 <div className="bottom_section"> <a href="tel:+91-8743877462"
                                                     className="phone_number">+91-8743877462</a> <a href="mailto:info@theozarkco.com"
@@ -192,7 +192,7 @@ function Service() {
                                         <div
                                             className="col-xl-8 col-lg-8 col-md-8 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
                                             <h3 style={{marginBottom:"10px"}}>Why choose to outsourcing us?</h3>
-                                            <div dangerouslySetInnerHTML={{ __html: solutionData?.why_choose_description || '' }}></div>
+                                            <div className="content_box_cn style_one" dangerouslySetInnerHTML={{ __html: solutionData?.why_choose_description || '' }}></div>
                                         </div>
                                         <div
                                             className="col-xl-4 col-lg-4 col-md-4 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
@@ -252,7 +252,7 @@ function Service() {
                                 <div className="title_sections">
 
                                     <div className="title">Words From Our Customers</div>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                    <p>See how our services have helped businesses succeed.</p>
                                 </div>
                             </div>
                         </div>
