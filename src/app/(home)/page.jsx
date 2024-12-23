@@ -21,7 +21,7 @@ export default function Home() {
   const onSubmit = async (data) => {
     try {
       const res = await api.post("/contact_enquiry/post_contact_enquiry_data", data);
-     
+
       if (res.data.status == 1) {
         toast.success(res.data.message);
         reset();
@@ -45,7 +45,7 @@ export default function Home() {
       console.log(err);
     }
   }
-  
+
   return (
     <>
       <div id="content" className="site-content ">
@@ -330,7 +330,7 @@ export default function Home() {
                     <div className="before_title">Why Choose Us</div>
                     <h2>{homePageData?.why_choose_us?.heading}</h2>
 
-                    <div className="description_box" dangerouslySetInnerHTML={{ __html: homePageData?.why_choose_us?.description || ''}}></div>
+                    <div className="description_box" dangerouslySetInnerHTML={{ __html: homePageData?.why_choose_us?.description || '' }}></div>
                   </div>
                 </div>
 
@@ -870,13 +870,13 @@ export default function Home() {
 
                             <li className="date">
                               <a href="blog-single.html">
-                              <span className="icon-calendar me-2"></span>
+                                <span className="icon-calendar me-2"></span>
                                 {ele.blog_date}
                               </a>
                             </li>
                           </ul>
                           <h2 className="entry-title"><a href="blog-single.html">{ele.heading}</a></h2>
-                          <p className="short_desc">{ele.content.substring(0,90)}...</p>
+                          <p className="short_desc">{ele.content.substring(0, 90)}...</p>
                           <div className="bottom_content clearfix">
                             <div className="continure_reading">
                               <a href="blog-single.html" className="read_more type_one">
@@ -973,7 +973,7 @@ export default function Home() {
                           <i className="fa fa-folder"></i>
                         </label>
 
-                        <input type="submit" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} />
+                        <input type="submit" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} value={isSubmitting ? "Sending..." : "Submit"} style={isSubmitting ? { opacity: "0.5" } : {}} />
                       </p>
                     </form>
                   </div>

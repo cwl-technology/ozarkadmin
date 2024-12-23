@@ -418,7 +418,7 @@ function Career() {
                                                                 {errors.resume && <p style={{ color: "red", marginTop: "-25px" }}>{errors.resume.message}</p>}
                                                             </div>
                                                             <div className="col-lg-12">
-                                                                <input type="submit" value={isSubmitting?"Submiting...":"Submit"}  className="wpcf7-form-control has-spinner wpcf7-submit theme-btn one" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}/>
+                                                                <input type="submit" value={isSubmitting?"submitting...":"Submit"}  className="wpcf7-form-control has-spinner wpcf7-submit theme-btn one" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}/>
                                                             </div>
                                                         </div>
                                                     </form>

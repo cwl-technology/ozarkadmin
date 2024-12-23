@@ -210,7 +210,7 @@ const page = () => {
 
                                 <fieldset className="border rounded p-3 px-4 mb-4">
                                     <legend className="float-none w-auto px-3">
-                                        Container
+                                        Section
                                     </legend>
                                     <div className="form-row">
                                         <div className="col-md-6">
@@ -310,7 +310,7 @@ const page = () => {
 
                                 <fieldset className="border rounded p-3 px-4 mb-4">
                                     <legend className="float-none w-auto px-3">
-                                        why choose us
+                                        Why choose us
                                     </legend>
                                     <div className="form-row">
                                         <div className="col-md-12">

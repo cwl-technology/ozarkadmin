@@ -120,7 +120,7 @@ function Contact() {
 
                                           <div className="col-sm-12">
                                              <div className="form-group mg_top apbtn">
-                                                <button className="theme_btn disabled" type="submit" style={{ pointerEvents: "all", cursor: "pointer" }} onClick={handleSubmit(onSubmit)} disabled={isSubmitting}> {isSubmitting ? "Sending..." : "Appointment"} </button>
+                                                <button className="theme_btn disabled" type="submit" style={isSubmitting ? { opacity: "0.5" } : {}} onClick={handleSubmit(onSubmit)} disabled={isSubmitting}> {isSubmitting ? "Sending..." : "Appointment"} </button>
                                              </div>
                                           </div>
                                        </div>
