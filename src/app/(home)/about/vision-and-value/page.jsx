@@ -29,7 +29,7 @@ export const generateMetadata = async () => {
 
 export default async function page() {
     const data = await getData();
-    
+
     return (
         <>
             <div id="content" className="site-content ">
@@ -101,7 +101,7 @@ export default async function page() {
                                         </div>
                                         <div className="txt_content">
                                             <h3><a href="#" target="_blank" rel="nofollow">{data?.subheading3}</a></h3>
-                                            <div dangerouslySetInnerHTML={{__html:data?.description1 || ''}}></div>
+                                            <div dangerouslySetInnerHTML={{ __html: data?.description1 || '' }}></div>
                                             <div className="btn_left">
                                                 <a href="#" target="_blank" rel="nofollow" className="theme-btn one">Read More</a>
                                             </div>
@@ -160,8 +160,7 @@ export default async function page() {
                                                 </a>
                                             </h2>
                                             <p>
-                                                The less water you use, the less runoff and water that end up in the
-                                                ocean.
+                                                Experience round-the-clock assistance with our 24/7 customer support
                                             </p>
                                         </div>
                                     </div>
@@ -183,8 +182,7 @@ export default async function page() {
                                                 </a>
                                             </h2>
                                             <p>
-                                                The less water you use, the less runoff and water that end up in the
-                                                ocean.
+                                            Connect with our dedicated experts anytime, anywhere!
                                             </p>
                                         </div>
                                     </div>
@@ -203,8 +201,7 @@ export default async function page() {
                                                     Smart solutions
                                                 </a>
                                             </h2>
-                                            <p> The less water you use, the less runoff and water that end up in the
-                                                ocean.
+                                            <p> Discover innovative answers tailored to your needs!
                                             </p>
                                         </div>
                                     </div>
@@ -229,7 +226,7 @@ export default async function page() {
                             </div>
                         </div>
                         <div className="pd_bottom_25"></div>
-                        <div dangerouslySetInnerHTML={{__html:data?.main_description || ''}}></div>
+                        <div dangerouslySetInnerHTML={{ __html: data?.main_description || '' }}></div>
                     </div>
                     <div className="pd_bottom_70"></div>
                 </section>

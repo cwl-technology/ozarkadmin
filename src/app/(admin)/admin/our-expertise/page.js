@@ -113,7 +113,7 @@ const page = () => {
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Benefits Heading
+                                                    Heading 1
                                                 </label>
                                                 <input
                                                     {...register("benefits_heading")}
@@ -126,7 +126,7 @@ const page = () => {
                                         <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Benefits Image
+                                                    Image 1
                                                 </label>
                                                 <input
                                                     type="file"
@@ -145,7 +145,7 @@ const page = () => {
                                         <div className="col-md-12">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Benefits Description
+                                                    Description 1
                                                 </label>
                                                 <JoditEditor
                                                     ref={editor1}
@@ -161,7 +161,7 @@ const page = () => {
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Advice Heading
+                                                    Heading 2
                                                 </label>
                                                 <input
                                                     {...register("advice_heading")}
@@ -174,7 +174,7 @@ const page = () => {
                                         <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Advice Image
+                                                    Image 2
                                                 </label>
                                                 <input
                                                     type="file"
@@ -193,7 +193,7 @@ const page = () => {
                                         <div className="col-md-12">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Advice Description
+                                                    Description 2
                                                 </label>
                                                 <JoditEditor
                                                     ref={editor2}
@@ -209,7 +209,7 @@ const page = () => {
                                         <div className="col-md-6">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Audit Heading
+                                                    Heading 3
                                                 </label>
                                                 <input
                                                     {...register("audit_heading")}
@@ -222,7 +222,7 @@ const page = () => {
                                         <div className="col-7 col-md-4">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Audit Image
+                                                    Image 3
                                                 </label>
                                                 <input
                                                     type="file"
@@ -241,7 +241,7 @@ const page = () => {
                                         <div className="col-md-12">
                                             <div className="position-relative form-group">
                                                 <label>
-                                                    Audit Description
+                                                    Description 3
                                                 </label>
                                                 <JoditEditor
                                                     ref={editor3}

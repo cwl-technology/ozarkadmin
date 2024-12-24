@@ -172,11 +172,9 @@ function Career() {
                                         <div className="title_all_box style_one text-end">
                                             <div className="title_sections">
                                                 <h2>Create Meaningful Experiences for employees</h2>
-                                                <p>Our power of choice is untrammelled and when nothing prevents our able to do what
-                                                    we like best every pleasure is to be welcomed and occur that pleasures have to be
-                                                    repudiated.</p>
+                                                <p>we are dedicated to fostering an environment where employees are not just part of the team, but integral to our mission. We focus on providing meaningful experiences that promote both professional and personal growth.</p>
                                             </div>
-                                            <div className="theme_btn"> <a href="service-default.html" className="theme-btn one">Read more</a> </div>
+                                            {/* <div className="theme_btn"> <a href="service-default.html" className="theme-btn one">Read more</a> </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -189,19 +187,19 @@ function Career() {
                                         <div className="step_number">
                                             <h1>01.</h1>
                                         </div>
-                                        <h2 className="title"><a href="#">Payroll Management</a> </h2>
+                                        <h2 className="title"><a href="#">Submit Application</a> </h2>
                                     </div>
                                     <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 expertise_box">
                                         <div className="step_number">
                                             <h1>02.</h1>
                                         </div>
-                                        <h2 className="title"> <a href="#">Employee Compensation</a> </h2>
+                                        <h2 className="title"> <a href="#">Interview Process</a> </h2>
                                     </div>
                                     <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 expertise_box">
                                         <div className="step_number">
                                             <h1>03.</h1>
                                         </div>
-                                        <h2 className="title"> <a href="#">Benefits Management</a> </h2>
+                                        <h2 className="title"> <a href="#">Embrace Opportunity</a> </h2>
                                     </div>
                                 </div>
                             </div>

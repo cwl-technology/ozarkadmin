@@ -2,7 +2,7 @@
 
 import api from "@/_config/config";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { BASE_URL } from "@/_config/config";
 import { DataTable } from "simple-datatables";
 
 export default function page() {
@@ -97,7 +97,7 @@ export default function page() {
                           </td>
                           <td>
                             <div className="widget-heading d-flex justify-content-center">
-                              <a href={`http://localhost:5000/uploads/${ele.resume}`} download={`${ele.name}_resume.pdf`} target="_blank"><i class="fas fa-solid fa-download"></i></a>
+                              <a href={`${BASE_URL}/uploads/${ele.resume}`} download={`${ele.name}_resume.pdf`} target="_blank"><i class="fas fa-solid fa-download"></i></a>
                             </div>
                           </td>
 

@@ -101,7 +101,7 @@ async function page() {
                                     <div className="title_sections">
 
                                         <div className="title">The Smiles We Shared This Season</div>
-                                        <p className="description_text">We deliver the highest quality of work, on time, everytime.
+                                        <p className="description_text"> We spread smiles by making a lasting impact in communities.
                                         </p>
                                     </div>
                                     <div className="pd_bottom_20"></div>
@@ -217,15 +217,14 @@ async function page() {
                                         <div className="pd_top_80"></div>
                                         <div className="title_all_box style_one light_color">
                                             <div className="title_sections left">
-                                                <div className="before_title">Free Forever Attendance</div>
-                                                <h2>Reduce Cost and Limit Liability with HR Solutions</h2>
-                                                <p>When you work with HR Solutions, you get the best. We provide adaptable solutions
-                                                    that
-                                                    allow you to be a part of the entire process</p>
+                                                <div className="before_title">Together,</div>
+                                                <h2>We Make an Impact</h2>
+                                                <p>We know that meaningful change happens when we come together. Through partnerships with local organizations and direct contributions to those in need, we ensure that our efforts make a lasting and positive impact.</p>
+                                                <p>We focus on empowering communities by supporting education, health, and well-being, and ensuring that those who need it most receive the resources and opportunities to thrive.</p>
                                             </div>
                                         </div>
                                         <div className="pd_bottom_20"></div>
-                                        <div className="row gutter_15px">
+                                        {/* <div className="row gutter_15px">
                                             <div className="col-lg-6 col-md-6 col-sm-12">
                                                 <div className="icon_box_all style_seven light_color">
                                                     <div className="icon_content">
@@ -254,8 +253,8 @@ async function page() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="pd_bottom_30"></div>
+                                        </div> */}
+                                        {/* <div className="pd_bottom_30"></div> */}
                                         <div className="row gutter_15px">
                                             <div className="col-lg-4 col-md-4 col-sm-12">
                                                 <div className="theme_btn_all color_one">
@@ -263,7 +262,7 @@ async function page() {
                                                 </div>
                                                 <div className="pd_bottom_30"></div>
                                             </div>
-                                            <div className="col-lg-8 col-md-8 col-sm-12">
+                                            {/* <div className="col-lg-8 col-md-8 col-sm-12">
                                                 <div className="extra_content authour_box light_color">
                                                     <div className="authour_box_content">
                                                         <div className="image">
@@ -275,7 +274,7 @@ async function page() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="pd_bottom_70"></div>
                                     </div>

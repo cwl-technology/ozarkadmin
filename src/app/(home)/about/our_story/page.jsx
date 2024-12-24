@@ -188,9 +188,8 @@ async function Story() {
                                 <div className="title_all_box style_one text-center dark_color">
                                     <div className="title_sections">
 
-                                        <h2 className="title">Recruitment Process</h2>
-                                        <p>Keep rising employee health care costs down. An employer's total benefit costs can be
-                                            as much as 40 percent of the company's operating budget.</p>
+                                        <h2 className="title">Our Story, Your Growth</h2>
+                                        <p>See how our path of growth has empowered businesses through smart financial solutions.</p>
                                     </div>
 
                                     <div className="pd_top_20"></div>

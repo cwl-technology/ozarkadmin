@@ -65,36 +65,35 @@ const OurExpertise = () => {
                             <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-5 mb-lg-0 mb-xl-0">
                                 <div className="title_all_box style_one  dark_color">
                                     <div className="title_sections left">
-                                        <div className="before_title">Successful &amp;</div>
-                                        <h2>Sustainable Growth</h2>
-                                        <p>Denounce with righteous indignation and dislike men who are beguiled and demoralized by
-                                            the charms of pleasure.</p>
+                                        <div className="before_title">Innovative Solutions &amp;</div>
+                                        <h2> Backed by Experience</h2>
+                                        <p>We leverage cutting-edge tools and proven strategies to deliver customized solutions, ensuring your business stays ahead in a competitive landscape.</p>
                                     </div>
                                 </div>
-                                <div className="theme_btn_all color_one">
+                                {/* <div className="theme_btn_all color_one">
                                     <a href="#" target="_blank" rel="nofollow" className="theme-btn four">Read more <i
                                         className="icon-right-arrow"></i></a>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <div className="progress_bar style_three">
-                                    <h2>Recruitment Process <span>48%</span></h2>
+                                    <h2>Client Satisfaction Rate <span>92%</span></h2>
                                     <div className="bar">
-                                        <div className="bar-inner count-bar counted" data-percent="48%" style={{ width: "48%" }}></div>
+                                        <div className="bar-inner count-bar counted" data-percent="48%" style={{ width: "92%" }}></div>
                                     </div>
                                 </div>
 
                                 <div className="progress_bar style_three">
-                                    <h2>Employee Relations <span>79%</span></h2>
+                                    <h2>Yearly Tax Compliance Accuracy <span>98%</span></h2>
                                     <div className="bar">
-                                        <div className="bar-inner count-bar counted" data-percent="79%" style={{ width: "79%" }}></div>
+                                        <div className="bar-inner count-bar counted" data-percent="79%" style={{ width: "98%" }}></div>
                                     </div>
                                 </div>
 
                                 <div className="progress_bar style_three">
-                                    <h2>Compliance Audits <span>65%</span></h2>
+                                    <h2>Processes Automated Across Clients <span>74%</span></h2>
                                     <div className="bar">
-                                        <div className="bar-inner count-bar counted" data-percent="65%" style={{ width: "65%" }}></div>
+                                        <div className="bar-inner count-bar counted" data-percent="65%" style={{ width: "74%" }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -112,13 +111,13 @@ const OurExpertise = () => {
                                         <ul className="showcase_tabs_btns nav-pills nav clearfix">
 
                                             <li className="nav-item">
-                                                <a className={`s_tab_btn nav-link ${activeId == 1 ? "active" : ""}`} data-tab="#tabtabone" onClick={() => handleToggle(1)}>01.Benefits</a>
+                                                <a className={`s_tab_btn nav-link ${activeId == 1 ? "active" : ""}`} data-tab="#tabtabone" onClick={() => handleToggle(1)}>01.Trust</a>
                                             </li>
                                             <li className="nav-item">
-                                                <a className={`s_tab_btn nav-link ${activeId == 2 ? "active" : ""}`} data-tab="#tabtabtwo" onClick={() => handleToggle(2)}>02. HR Advice</a>
+                                                <a className={`s_tab_btn nav-link ${activeId == 2 ? "active" : ""}`} data-tab="#tabtabtwo" onClick={() => handleToggle(2)}>02.Adaptability</a>
                                             </li>
                                             <li className="nav-item">
-                                                <a className={`s_tab_btn nav-link ${activeId == 3 ? "active" : ""}`} data-tab="#tabtabtwothree" onClick={() => handleToggle(3)}>03. HR Audit</a>
+                                                <a className={`s_tab_btn nav-link ${activeId == 3 ? "active" : ""}`} data-tab="#tabtabtwothree" onClick={() => handleToggle(3)}>03. Progress</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -136,8 +135,8 @@ const OurExpertise = () => {
                                                             <div className="content_bx">
                                                                 <h6>{data?.benefits_heading}</h6>
                                                                 <div dangerouslySetInnerHTML={{ __html: data?.benefits_description || " " }}></div>
-                                                                <a href="#" target="_blank" rel="nofollow" className="theme-btn two">Read
-                                                                    More</a>
+                                                                {/* <a href="#" target="_blank" rel="nofollow" className="theme-btn two">Read
+                                                                    More</a> */}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -155,9 +154,9 @@ const OurExpertise = () => {
                                                             <div className="content_bx">
                                                                 <h6>{data?.advice_heading}</h6>
                                                                 <div dangerouslySetInnerHTML={{ __html: data?.advice_description || " " }}></div>
-                                                                <a href="#" target="_blank" rel="nofollow" className="theme-btn two">
+                                                                {/* <a href="#" target="_blank" rel="nofollow" className="theme-btn two">
                                                                     Read More
-                                                                </a>
+                                                                </a> */}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,9 +174,9 @@ const OurExpertise = () => {
                                                             <div className="content_bx">
                                                                 <h6>{data?.audit_heading}</h6>
                                                                 <div dangerouslySetInnerHTML={{ __html: data?.audit_description || " " }}></div>
-                                                                <a href="#" target="_blank" rel="nofollow" className="theme-btn two">
+                                                                {/* <a href="#" target="_blank" rel="nofollow" className="theme-btn two">
                                                                     Read More
-                                                                </a>
+                                                                </a> */}
                                                             </div>
                                                         </div>
                                                     </div>

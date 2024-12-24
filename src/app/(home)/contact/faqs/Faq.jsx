@@ -95,7 +95,7 @@ function Faq() {
                                 <div className="title_all_box style_one text-center dark_color">
                                     <div className="title_sections">
                                         <h2>Useful Question &amp; Answer</h2>
-                                        <p>Check our FAQs for quick answers to frequently asked questions we receive.<br /> If you have other questions write.</p>
+                                        <p>Check our FAQs for quick answers to frequently asked questions we receive.</p>
                                     </div>
                                     <div className="pd_top_15"></div>
                                 </div>

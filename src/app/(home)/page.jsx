@@ -144,7 +144,7 @@ export default function Home() {
                       <h2>
                         <a href="#">Unique Solution</a>
                       </h2>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                      <p>We provide unique solutions as your needs, ensuring innovative approaches that deliver exceptional results.</p>
                     </div>
                   </div>
                 </div>
@@ -183,10 +183,9 @@ export default function Home() {
                     </div>
                     <div className="overlay_content">
                       <h2>
-                        <a href="#">Profitability</a>
+                        <a href="#">Excellence</a>
                       </h2>
-                      <p>On average we save clients as much as 50% in cost, compared with carrying out the
-                        work themselves.
+                      <p>We strive for excellence by delivering high-quality solutions that exceed expectations and drive success
                       </p>
                     </div>
                   </div>
@@ -226,9 +225,9 @@ export default function Home() {
                     </div>
                     <div className="overlay_content">
                       <h2>
-                        <a href="#">Compliance Audits</a>
+                        <a href="#">Reliability</a>
                       </h2>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                      <p>We ensure reliability by delivering consistent, high-quality results you can count on</p>
                     </div>
                   </div>
                 </div>
@@ -590,19 +589,18 @@ export default function Home() {
                   <div className="client-brand-wrapper">
                     <div className="title_all_box style_one light_color">
                       <div className="title_sections left">
-                        <h2>Software Integration </h2>
-                        <p>Over 20 years of experience we’ll ensure you always get the best guidance.We help
-                          our clients set new standards of excellence.</p>
+                        <h2>Your Success, Our Priority</h2>
+                        <p>We provide expert financial services designed to help your business grow. From tax compliance to virtual CFO services, our solutions are crafted to meet your goals and ensure long-term success.</p>
                       </div>
                     </div>
-                    <div className="pd_bottom_15"></div>
+                    {/* <div className="pd_bottom_15"></div>
                     <div className="software-div">
                       <img src="assets/images/softwares/1.png" alt="softwares" />
                     </div>
                     <div className="pd_bottom_40"></div>
                     <div className="software-div">
                       <img src="assets/images/softwares/2.png" alt="softwares" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-lg-2"></div>
@@ -652,12 +650,10 @@ export default function Home() {
 
                             <h2>Affordable &amp; Flexible</h2>
 
-                            <p>Must explain too you how all this mistaken idea of denouncing pleasures
-                              praising pain was born and we will give you complete account of the system
-                              the actual teachings of the great explorer.</p>
+                            <p>At Ozark & Co., we offer financial solutions that are both affordable and flexible, ensuring that businesses of all sizes can access the support they need without breaking the bank.</p>
 
-                            <a href="#" target="_blank" rel="nofollow" className="rd_more">Read More <i
-                              className="icon-right-arrow"></i></a>
+                            {/* <a href="#" target="_blank" rel="nofollow" className="rd_more">Read More <i
+                              className="icon-right-arrow"></i></a> */}
                           </div>
                         </div>
                       </div>
@@ -906,9 +902,8 @@ export default function Home() {
                 <div className="title_all_box style_one dark_color">
                   <div className="title_sections">
                     <div className="before_title">Solutions for your business</div>
-                    <h2 className="title_big">Searching for the best HR software for your business?</h2>
-                    <p>Our power of choice is untrammelled and when nothing prevents being able to do what we
-                      like best every pleasure.</p>
+                    <h2 className="title_big">Have Questions? We're Here to Help!</h2>
+                    <p>Got questions or need assistance? Our team is ready to provide the support you need. Reach out today, and we'll ensure you get the answers you're looking for!</p>
                   </div>
                 </div>
                 <div className="pd_bottom_20"></div>
