@@ -1,11 +1,14 @@
 "use client"
+import Loader from '@/_components/Loader';
 import api from '@/_config/config';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 const OurExpertise = () => {
 
     const [activeId, setActiveId] = useState(1);
     const [data, setData] = useState();
+    const [loading, setLoading] = useState(true)
 
     const handleToggle = (id) => {
         setActiveId(id);
@@ -21,9 +24,15 @@ const OurExpertise = () => {
             if (res.data.status == 1) {
                 setData(res.data.data);
             }
+            setLoading(false);
         } catch (err) {
+            setLoading(false);
             console.log(err)
         }
+    }
+
+    if(loading){
+        return <Loader/>
     }
 
     return (
@@ -40,15 +49,15 @@ const OurExpertise = () => {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page">
+                                        <h1 className="title_page">
                                             Our Expertise
-                                        </div>
+                                        </h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="breadcrumbs creote">
                                         <ul className="breadcrumb m-auto">
-                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><Link href="/">Home</Link></li>
                                             <li className="active">Our Expertise</li>
                                         </ul>
                                     </div>

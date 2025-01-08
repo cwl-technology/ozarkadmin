@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import api from '@/_config/config';
 import { usePathname } from 'next/navigation';
+import Loader from '@/_components/Loader';
 
 
 
@@ -12,7 +13,8 @@ function CaseStudyDetail() {
    const pathname = usePathname();
    const slug = pathname.split("/")[3]
    const [data, setData] = useState();
-   const [latestCaseStudy,setLatestCaseStudy] = useState();
+   const [latestCaseStudy, setLatestCaseStudy] = useState();
+   const [loading,setLoading] = useState(true);
 
    useEffect(() => {
       getCaseStudyData();
@@ -24,20 +26,25 @@ function CaseStudyDetail() {
          const res = await api.post("/case_study/get_case_study_by_slug", {
             slug: slug
          })
-         console.log(res.data)
+
          setData(res.data.data);
+         setLoading(false);
       } catch (err) {
          console.log(err);
       }
    }
    const getLatestCaseStudy = async () => {
       try {
-          const res = await api.get("/case_study/get_latest_case_study");
-          setLatestCaseStudy(res.data.data);
+         const res = await api.get("/case_study/get_latest_case_study");
+         setLatestCaseStudy(res.data.data);
       } catch (err) {
-          console.log(err);
+         console.log(err);
       }
-  }
+   }
+
+   if(loading){
+      return <Loader/>
+   }
    return (
       <>
 
@@ -53,16 +60,17 @@ function CaseStudyDetail() {
                      <div className="row">
                         <div className="col-md-12">
                            <div className="banner_title_inner">
-                              <div className="title_page">
-                                 Case Study Detail
-                              </div>
+                              <h1 className="title_page">
+                                 {data?.heading}
+                              </h1>
                            </div>
                         </div>
                         <div className="col-lg-12">
                            <div className="breadcrumbs creote">
                               <ul className="breadcrumb m-auto">
                                  <li><Link href="/">Home</Link></li>
-                                 <li className="active">Case Study Detail</li>
+                                 <li><Link href="/success-story/case-study">Case Study</Link></li>
+                                 <li className="active">{data?.heading}</li>
                               </ul>
                            </div>
                         </div>
@@ -94,26 +102,26 @@ function CaseStudyDetail() {
                               </ul>
                            </div> */}
                            <div className="widgets_grid_box">
-                                        <h2 className="widget-title">Recent Posts</h2>
-                                        <div className="widget_post_box">
+                              <h2 className="widget-title">Recent Posts</h2>
+                              <div className="widget_post_box">
 
-                                            {
-                                                latestCaseStudy?.map((ele, ind) =>
-                                                    <div className="blog_in clearfix image_in" key={ind}>
-                                                        <div className="image">
-                                                            <img decoding="async" src={ele.image} alt="img" />
-                                                        </div>
-                                                        <div className="content_inner">
-                                                            {/* <p className="post-date"><span className="icon-calendar"></span>
+                                 {
+                                    latestCaseStudy?.map((ele, ind) =>
+                                       <div className="blog_in clearfix image_in" key={ind}>
+                                          <div className="image">
+                                             <img decoding="async" src={ele.image} alt="img" />
+                                          </div>
+                                          <div className="content_inner">
+                                             {/* <p className="post-date"><span className="icon-calendar"></span>
                                                             {ele.blog_date}</p> */}
-                                                            <h3><Link href={`/success-story/case-study/${ele.slug}`}>{ele.heading}</Link></h3>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            }
+                                             <h3><Link href={`/success-story/case-study/${ele.slug}`}>{ele.heading}</Link></h3>
+                                          </div>
+                                       </div>
+                                    )
+                                 }
 
-                                        </div>
-                                    </div>
+                              </div>
+                           </div>
 
                            <div className="pd_bottom_70"></div>
                         </div>
@@ -128,7 +136,7 @@ function CaseStudyDetail() {
                                  </div>
                                  <div className="pd_bottom_20"></div>
                                  <div className="post_single_content">
-                                    <h5>{data?.heading}</h5>
+                                    <h2>{data?.heading}</h2>
                                     <div className="pd_bottom_15"></div>
 
                                     <div dangerouslySetInnerHTML={{ __html: data?.description || '' }}>
@@ -158,7 +166,7 @@ function CaseStudyDetail() {
                                        </div>
                                     </div> */}
                                  </div>
-                                 
+
                                  {/* <div className="related_post">
 
                                     <div className="title_sections_inner">

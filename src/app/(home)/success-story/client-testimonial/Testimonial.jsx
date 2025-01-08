@@ -1,6 +1,8 @@
 "use client";
 
+import Loader from "@/_components/Loader";
 import api from "@/_config/config";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function Testimonial() {
@@ -9,6 +11,7 @@ function Testimonial() {
     const [solutionList, setSolutionList] = useState();
     const [allTestimonial, setAllTestimonial] = useState();
     const [activeTestimonialId, setActiveTestimonialId] = useState(1);
+    const [loading,setloading] = useState(true);
 
 
     useEffect(() => {
@@ -21,6 +24,7 @@ function Testimonial() {
             const res = await api.post("/testimonials/get_active_testimonial_data");
             setTestimonialData(res.data.data);
             setAllTestimonial(res.data.data);
+            setloading(false)
         } catch (err) {
             console.log(err);
         }
@@ -47,6 +51,9 @@ function Testimonial() {
         setActiveTestimonialId(id);
     }
 
+    if(loading){
+        return <Loader/>
+    }
     return (
         <>
             <div id="content" className="site-content ">
@@ -61,15 +68,15 @@ function Testimonial() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page">
+                                        <h1 className="title_page">
                                             Empowering Client Journeys
-                                        </div>
+                                        </h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="breadcrumbs creote">
                                         <ul className="breadcrumb m-auto">
-                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><Link href="/">Home</Link></li>
                                             <li className="active">Empowering Client Journeys</li>
                                         </ul>
                                     </div>
@@ -88,18 +95,18 @@ function Testimonial() {
                                         <li data-filter=".project_category-coaching" className={`img-fluid ${activeTestimonialId == 1 ? "current" : ""}`} onClick={() => filterTestimonialData(1)}>All</li>
                                         {
                                             solutionList?.map((ele, ind) => (
-                                                <li data-filter=".project_category-coaching" className={`img-fluid ${activeTestimonialId == ele._id ? "current" : ""}`} key={ind} onClick={() => filterTestimonialData(ele._id)}>{ele.solution_name}</li>
+                                                <li data-filter=".project_category-coaching" className={`img-fluid ${activeTestimonialId == ele._id ? "current" : ""}`} key={ind} onClick={() => filterTestimonialData(ele._id)} >{ele.solution_name}</li>
                                             ))
                                         }
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row g-3">
 
                             {
                                 testimonialData?.map((ele, ind) =>
-                                    <div className="col-md-4" key={ind}>
+                                    <div className="col-12 col-lg-6 col-xl-4" key={ind}>
                                         <div className="testimonial_box type_two">
                                             <div className="upper_content">
                                                 <div className="image_box">

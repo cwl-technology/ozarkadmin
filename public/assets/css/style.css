@@ -466,6 +466,7 @@ input[type="password"]{
   font-weight: bold;
   position: relative;
   padding-bottom: 12px;
+  color: white;
 }
 
 .footer .footer-links {
@@ -502,6 +503,9 @@ input[type="password"]{
 
 .footer .footer-contact p {
   margin-bottom: 5px;
+  margin-top: 0.5rem;
+  /* margin-left: 2rem; */
+  width: 350px;
 }
 
 .footer .copyright {
@@ -648,6 +652,19 @@ input[type="password"]{
 
 .accordion-content.show {
   display: block;
+}
+
+
+.simp_img_1{
+  height: 170px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.simp_img_2{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
 }
 
 

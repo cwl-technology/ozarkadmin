@@ -6,5 +6,4 @@ const api = axios.create({
 })
 
 export const BASE_URL = "https://ozarkbackend-production-4da6.up.railway.app"
-
 export default api;

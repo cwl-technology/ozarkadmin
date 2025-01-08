@@ -25,7 +25,7 @@ function Header() {
 
             <div className="header_area" id="header_contents">
 
-                <section className="header header_default style_five get_sticky_header">
+                <section className="header header_default style_five get_sticky_header ">
                     <div className="navbar d-xl-none d-md-none" id="myTopnav">
                         <div className="mob-logo-box"> <a href="index.html" className="logo navbar-brand"> <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default"/> </a> </div>
                         <label htmlFor="togglericon" className="toggler" checked></label>
@@ -53,25 +53,22 @@ function Header() {
                             </div>
                             <a href="#">Contact</a> </div>
                     </div>
+
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="col-lg-2 col-md-9 col-sm-9 col-xs-9 logo_column">
-                                <div className="header_logo_box d-xl-block d-none">
+                            <div className="col-2 logo_column">
+                                <div className="header_logo_box">
                                     <Link href="/" className="logo navbar-brand">
                                         <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default" />
                                         {/* <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo__sticky" /> */}
                                     </Link>
                                 </div>
                             </div>
-                            <div className="col-lg-10 col-md-3 col-sm-3 col-xs-3 menu_column">
-                                <div className="navbar_togglers hamburger_menu"
-
-                                >
-                                    <span className="line"></span>
-                                    <span className="line"></span>
-                                    <span className="line"></span>
-                                </div>
+                            <div className="col-10 ">
                                 <div className="header_content_collapse">
+
+
+
                                     <div className="header_menu_box">
                                         <div className="navigation_menu">
                                             <ul id="myNavbar" className="navbar_nav">
@@ -174,7 +171,7 @@ function Header() {
                                         </div>
                                     </div>
 
-                                    <div className="header_right_content">
+                                    <div className="header_right_content d-none d-xl-block">
                                         <ul>
                                             <li>
                                                 <Link href="/contact/contact-us" rel="nofollow" className="theme-btn gradient-btn"> Get A

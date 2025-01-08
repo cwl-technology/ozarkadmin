@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import api from '@/_config/config';
 import { usePathname } from 'next/navigation';
+import Loader from '@/_components/Loader';
+import DateFormatter from '@/_utils/DateFormatter';
 
 
 
@@ -12,7 +14,8 @@ function BlogName() {
    const pathname = usePathname();
    const blog_slug = pathname.split("/")[2]
    const [data, setData] = useState();
-   const [latestBlog,setBlogLatest] = useState();
+   const [latestBlog, setBlogLatest] = useState();
+   const [loading,setLoading] = useState(true)
 
    useEffect(() => {
       getBlogData();
@@ -25,17 +28,22 @@ function BlogName() {
             slug: blog_slug
          })
          setData(res.data.data);
+         setLoading(false);
       } catch (err) {
          console.log(err);
       }
    }
    const getLatestBlogs = async () => {
       try {
-          const res = await api.get("/blog/get_latest_blogs");
-          setBlogLatest(res.data.data);
+         const res = await api.get("/blog/get_latest_blogs");
+         setBlogLatest(res.data.data);
       } catch (err) {
-          console.log(err);
+         console.log(err);
       }
+   }
+
+   if(loading){
+      return <Loader/>
   }
    return (
       <>
@@ -52,16 +60,17 @@ function BlogName() {
                      <div className="row">
                         <div className="col-md-12">
                            <div className="banner_title_inner">
-                              <div className="title_page">
-                                 Blog Detail
-                              </div>
+                              <h1 className="title_page">
+                                 {data?.heading}
+                              </h1>
                            </div>
                         </div>
                         <div className="col-lg-12">
                            <div className="breadcrumbs creote">
                               <ul className="breadcrumb m-auto">
                                  <li><Link href="/">Home</Link></li>
-                                 <li className="active">Blog Detail</li>
+                                 <li><Link href="/blogs">Blogs</Link></li>
+                                 <li className="active">{data?.heading}</li>
                               </ul>
                            </div>
                         </div>
@@ -93,25 +102,27 @@ function BlogName() {
                               </ul>
                            </div> */}
                            <div className="widgets_grid_box">
-                                        <h2 className="widget-title">Recent Posts</h2>
-                                        <div className="widget_post_box">
+                              <h2 className="widget-title">Recent Posts</h2>
+                              <div className="widget_post_box">
 
-                                            {
-                                                latestBlog?.map((ele, ind) =>
-                                                    <div className="blog_in clearfix image_in" key={ind}>
-                                                        <div className="image">
-                                                            <img decoding="async" src={ele.main_image} alt="img" />
-                                                        </div>
-                                                        <div className="content_inner">
-                                                            <p className="post-date"><span className="icon-calendar"></span>{ele.blog_date}</p>
-                                                            <h3><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h3>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            }
+                                 {
+                                    latestBlog?.map((ele, ind) =>
+                                       <div className="blog_in clearfix image_in" key={ind}>
+                                          <div className="image">
+                                             <img decoding="async" src={ele.main_image} alt="img" />
+                                          </div>
+                                          <div className="content_inner">
+                                             <p className="post-date"><span className="icon-calendar"></span>
+                                             <DateFormatter Date={ele.blog_date}/>
+                                             </p>
+                                             <h3><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h3>
+                                          </div>
+                                       </div>
+                                    )
+                                 }
 
-                                        </div>
-                                    </div>
+                              </div>
+                           </div>
 
                            <div className="pd_bottom_70"></div>
                         </div>
@@ -126,7 +137,7 @@ function BlogName() {
                                  </div>
                                  <div className="pd_bottom_20"></div>
                                  <div className="post_single_content">
-                                    <h5>{data?.heading}</h5>
+                                    <h2>{data?.heading}</h2>
                                     <div className="pd_bottom_15"></div>
 
                                     <div dangerouslySetInnerHTML={{ __html: data?.description1 || '' }}>
@@ -135,28 +146,28 @@ function BlogName() {
                                        <div className="pd_bottom_15"></div>
                                        <div className="row gutter_30px">
                                           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-5 mb-lg-5 mb-xl-0">
-                                             <div className="simple_image_boxes" style={{height:"100%",maxHeight:"390px"}}>
+                                             <div className="simple_image_boxes" style={{ height: "100%", maxHeight: "390px" }}>
                                                 <img src={data?.image1} className="simp_img img-fluid height_540px" alt="image" />
                                              </div>
                                              <div className="pd_bottom_30"></div>
                                           </div>
                                           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                             <div className="simple_image_boxes">
+                                             <div className="simple_image_boxes" style={{maxHeight:"180px"}}>
                                                 <img src={data?.image2} className="simp_img img-fluid height_260" alt="image" />
                                              </div>
                                              <div className="pd_bottom_30"></div>
-                                             <div className="simple_image_boxes ">
+                                             <div className="simple_image_boxes " style={{maxHeight:"180px"}}>
                                                 <img src={data?.image3} className="simp_img img-fluid height_250px" alt="image" />
                                              </div>
                                           </div>
                                        </div>
                                        <div className="invisible_normal_spacing"></div>
-                                       <div className="description_box" dangerouslySetInnerHTML={{ __html: data?.description2 || ''}}>
-                                          
+                                       <div className="description_box" dangerouslySetInnerHTML={{ __html: data?.description2 || '' }}>
+
                                        </div>
                                     </div>
                                  </div>
-                                 
+
                                  {/* <div className="related_post">
 
                                     <div className="title_sections_inner">

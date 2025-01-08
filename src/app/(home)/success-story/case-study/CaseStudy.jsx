@@ -1,5 +1,6 @@
 "use client"
 
+import Loader from '@/_components/Loader';
 import api from '@/_config/config';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ function CaseStudy() {
     const [caseStudyData, setCaseStudyData] = useState();
     const [allCaseStudyData, setAllCaseStudyData] = useState();
     const [active, setActive] = useState(1);
+    const [loading,setLoading] = useState(true);
 
     useEffect(() => {
         getSolutionList();
@@ -29,6 +31,7 @@ function CaseStudy() {
             const res = await api.get("/case_study/get_active_case_study")
             setCaseStudyData(res.data.data);
             setAllCaseStudyData(res.data.data);
+            setLoading(false)
         } catch (err) {
             console.log(err);
         }
@@ -45,6 +48,10 @@ function CaseStudy() {
         setActive(id)
     }
 
+    if(loading){
+        return <Loader/>
+    }
+
     return (
         <>
             <div id="content" className="site-content ">
@@ -59,15 +66,15 @@ function CaseStudy() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page">
+                                        <h1 className="title_page">
                                             Case Studies
-                                        </div>
+                                        </h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="breadcrumbs creote">
                                         <ul className="breadcrumb m-auto">
-                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><Link href="/">Home</Link></li>
                                             <li className="active">Case Studies</li>
                                         </ul>
                                     </div>
@@ -84,14 +91,16 @@ function CaseStudy() {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="fliter_group" style={{ textAlign: "center!important" }}>
-                                        <ul className="project_filter dark clearfix">
-                                            <li className={`${active == 1 ? "current" : ""}`} onClick={() => filterCaseStudyData(1)}>View All</li>
 
+                                        <ul className="project_filter dark clearfix">
+                                            <li data-filter=".project_category-coaching" className={`img-fluid ${active == 1 ? "current" : ""}`} onClick={() => filterCaseStudyData(1)}>All</li>
                                             {
-                                                solutionList?.map((ele, ind) =>
-                                                    <li data-filter=".project_category-coaching" className={`img-fluid ${active == ele._id ? "current":""}`} key={ind} onClick={() => filterCaseStudyData(ele._id)}>{ele.solution_name}</li>)
+                                                solutionList?.map((ele, ind) => (
+                                                    <li data-filter=".project_category-coaching" className={`img-fluid ${active == ele._id ? "current" : ""}`} key={ind} onClick={() => filterCaseStudyData(ele._id)} style={{fontSize:"15px",padding:"0 3px"}}>{ele.solution_name}</li>
+                                                ))
                                             }
                                         </ul>
+
                                     </div>
                                 </div>
                             </div>

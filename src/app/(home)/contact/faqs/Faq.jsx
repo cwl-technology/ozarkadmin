@@ -1,4 +1,5 @@
 "use client"
+import Loader from '@/_components/Loader';
 import api from '@/_config/config';
 import { useEffect, useState } from 'react';
 import React from 'react'
@@ -9,6 +10,7 @@ function Faq() {
     const [faqData, setFaqData] = useState();
     const [allFaq, setAllfaq] = useState();
     const [activeFaqId, setActiveFaqId] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     const toggleFAQ = (index) => {
         if (activeFAQ === index) {
@@ -39,7 +41,9 @@ function Faq() {
             const res = await api.get("/faq/get_all_active_faq")
             setFaqData(res.data.data);
             setAllfaq(res.data.data);
+            setLoading(false);
         } catch (err) {
+            setLoading(false);
             console.log(err)
         }
     }
@@ -55,6 +59,9 @@ function Faq() {
         setActiveFaqId(id);
     }
 
+    if (loading) {
+        return <Loader />
+    }
     return (
         <>
             <div id="content" className="site-content ">
@@ -69,9 +76,9 @@ function Faq() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page">
+                                        <h1 className="title_page">
                                             FAQ's
-                                        </div>
+                                        </h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
@@ -121,28 +128,56 @@ function Faq() {
                         <div className="faq_section type_two">
                             <div className="block_faq">
                                 <div className="accordion row">
-                                    {
-                                        faqData?.map((ele, ind) =>
+                                    <div className='col-12 col-lg-6'>
+                                        {
+                                            faqData?.map((ele, ind) =>
+                                                ind < (faqData.length / 2)
+                                                && (
+                                                    <div key={ind}>
+                                                        <dt
+                                                            className={`faq_header ${activeFAQ === ind ? 'active' : ''}`}
+                                                            onClick={() => toggleFAQ(ind)}
+                                                        >
+                                                            {ele.heading}
+                                                            <span className={`icon-play ${activeFAQ === ind ? 'rotate' : ''}`}></span>
+                                                        </dt>
+                                                        <dd
+                                                            className={`accordion-content ${activeFAQ === ind ? 'show' : 'hide'}`}
+                                                            style={{ display: activeFAQ === ind ? 'block' : 'none' }}
+                                                        >
+                                                            <p>{ele.content}</p>
+                                                        </dd>
+                                                    </div>
+                                                )
+                                            )
+                                        }
+                                    </div>
 
-                                            <div key={ind} className='col-6'>
-                                                <dt
-                                                    className={`faq_header ${activeFAQ === ind ? 'active' : ''}`}
-                                                    onClick={() => toggleFAQ(ind)}
-                                                >
-                                                    {ele.heading}
-                                                    <span className={`icon-play ${activeFAQ === ind ? 'rotate' : ''}`}></span>
-                                                </dt>
-                                                <dd
-                                                    className={`accordion-content ${activeFAQ === ind ? 'show' : 'hide'}`}
-                                                    style={{ display: activeFAQ === ind ? 'block' : 'none' }}
-                                                >
-                                                    <p>{ele.content}</p>
-                                                </dd>
 
-                                            </div>
-
-                                        )
-                                    }
+                                    <div className='col-12 col-lg-6'>
+                                        {
+                                            faqData?.map((ele, ind) =>
+                                                ind >= (faqData.length / 2)
+                                                && (
+                                                    <div key={ind}>
+                                                        <dt
+                                                            className={`faq_header ${activeFAQ === ind ? 'active' : ''}`}
+                                                            onClick={() => toggleFAQ(ind)}
+                                                        >
+                                                            {ele.heading}
+                                                            <span className={`icon-play ${activeFAQ === ind ? 'rotate' : ''}`}></span>
+                                                        </dt>
+                                                        <dd
+                                                            className={`accordion-content ${activeFAQ === ind ? 'show' : 'hide'}`}
+                                                            style={{ display: activeFAQ === ind ? 'block' : 'none' }}
+                                                        >
+                                                            <p>{ele.content}</p>
+                                                        </dd>
+                                                    </div>
+                                                )
+                                            )
+                                        }
+                                    </div>
                                 </div>
                             </div>
                             {/* </div>

@@ -1,6 +1,8 @@
 "use client"
 
+import Loader from '@/_components/Loader';
 import api from '@/_config/config';
+import Link from 'next/link';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
@@ -11,6 +13,7 @@ function Career() {
     const [jobData, setJobData] = useState();
     const [activeIndex, setActiveIndex] = useState(0);
     const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
+    const [loading, setLoading] = useState(true);
 
 
     const handleToggle = (index) => {
@@ -26,8 +29,10 @@ function Career() {
         try {
             const res = await api.get("/career/get_career_page");
             setCareerPageData(res.data.data);
+            setLoading(false);
         } catch (err) {
             console.log(err);
+            setLoading(false);
         }
     }
 
@@ -53,10 +58,10 @@ function Career() {
             fromdata.append("resume", data.resume[0]);
 
             const res = await api.post("/jobs/post_job_enquiry", fromdata);
-            if(res.data.status == 1){
+            if (res.data.status == 1) {
                 toast.success(res.data.message);
                 reset();
-            }else{
+            } else {
                 toast.error("Internal server error !")
             }
         } catch (err) {
@@ -64,7 +69,9 @@ function Career() {
         }
     }
 
-
+    if (loading) {
+        return <Loader />
+    }
 
     return (
         <>
@@ -78,13 +85,13 @@ function Career() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page"> Career </div>
+                                        <h1 className="title_page"> Career </h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="breadcrumbs creote">
                                         <ul className="breadcrumb m-auto">
-                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><Link href="/">Home</Link></li>
                                             <li className="active">Career</li>
                                         </ul>
                                     </div>
@@ -258,6 +265,18 @@ function Career() {
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <div id="secondary" class="widget-area all_side_bar">
+                                    <div class="side_bar">
+                                        <div class="widgets_grid_box mt-0">
+                                            <div class="about_authour_widget"> <i class="icon-mail2 h1 text-white"></i>
+                                                <h3>Opportunities with us</h3>
+                                                <p>If you are unable to find a suitable opening please do not worry. We are always up to discover new talents, kindly mail us your resume and portfolio link to <a class="sidebar-link" href="mailto:info@theozarkco.com">info@theozarkco.com</a></p>
+                                                <Link href="/contact/contact-us">Contact Us</Link> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -334,7 +353,7 @@ function Career() {
                                                                         {...register("phone", {
                                                                             required: {
                                                                                 value: true,
-                                                                                message: "Phone umber is required !"
+                                                                                message: "Phone number is required !"
                                                                             },
                                                                             pattern: {
                                                                                 value: /^[+]?\d+$/,
@@ -416,7 +435,7 @@ function Career() {
                                                                 {errors.resume && <p style={{ color: "red", marginTop: "-25px" }}>{errors.resume.message}</p>}
                                                             </div>
                                                             <div className="col-lg-12">
-                                                                <input type="submit" value={isSubmitting?"submitting...":"Submit"}  className="wpcf7-form-control has-spinner wpcf7-submit theme-btn one" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}/>
+                                                                <input type="submit" value={isSubmitting ? "submitting..." : "Submit"} className="wpcf7-form-control has-spinner wpcf7-submit theme-btn one" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} />
                                                             </div>
                                                         </div>
                                                     </form>

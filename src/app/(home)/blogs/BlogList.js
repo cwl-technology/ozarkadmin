@@ -1,6 +1,8 @@
 "use client"
 
+import Loader from '@/_components/Loader';
 import api from '@/_config/config';
+import DateFormatter from '@/_utils/DateFormatter';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
@@ -12,6 +14,7 @@ function BlogList() {
     const [latestBlog, setBlogLatest] = useState();
     const [solutionList, setSolutionList] = useState();
     const [activeBlogFilter, setActiveBlogFilter] = useState(1);
+    const [loading,setLoading] = useState(true)
 
     useEffect(() => {
         getAllBlog();
@@ -24,7 +27,9 @@ function BlogList() {
             const res = await api.get("/blog/get_all_active_blogs");
             setBlogList(res.data.data);
             setAllBlog(res.data.data);
+            setLoading(false);
         } catch (err) {
+            setLoading(false);
             console.log(err);
         }
     }
@@ -59,6 +64,9 @@ function BlogList() {
         setActiveBlogFilter(id);
     }
 
+    if(loading){
+        return <Loader/>
+    }
 
 
     return (
@@ -75,15 +83,15 @@ function BlogList() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page">
+                                        <h1 className="title_page">
                                             Blogs
-                                        </div>
+                                        </h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="breadcrumbs creote">
                                         <ul className="breadcrumb m-auto">
-                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><Link href="/">Home</Link></li>
                                             <li className="active">Blogs</li>
                                         </ul>
                                     </div>
@@ -126,7 +134,7 @@ function BlogList() {
                                                             <img decoding="async" src={ele.main_image} alt="img" />
                                                         </div>
                                                         <div className="content_inner">
-                                                            <p className="post-date"><span className="icon-calendar"></span>{ele.blog_date}</p>
+                                                            <p className="post-date"><span className="icon-calendar"></span><DateFormatter Date={ele.blog_date}/></p>
                                                             <h3><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h3>
                                                         </div>
                                                     </div>
@@ -162,10 +170,10 @@ function BlogList() {
                                                                         <li className="date">
                                                                             
                                                                                 <span className="icon-calendar me-2"></span>
-                                                                                {ele.blog_date}
+                                                                                <DateFormatter Date={ele.blog_date}/>
                                                                         </li>
                                                                     </ul>
-                                                                    <h2 className="entry-title"><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h2>
+                                                                    <h2 className="entry-title"><Link href={`/blogs/${ele.slug}`} style={{ height: "105px",display:"flex",alignItems:"center" }}>{ele.heading}</Link></h2>
                                                                     <p className="short_desc">{ele.content.substring(0, 90)}...</p>
                                                                     <div className="bottom_content clearfix">
                                                                         <div className="continure_reading">

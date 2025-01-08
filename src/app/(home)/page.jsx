@@ -4,13 +4,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useForm } from "react-hook-form";
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import toast from 'react-hot-toast';
 import api from '@/_config/config';
+import Link from 'next/link';
+import Loader from '@/_components/Loader';
+import DateFormatter from '@/_utils/DateFormatter';
 
 export default function Home() {
 
+  const [tabId, setTabId] = useState(1)
   const [activeTab, setActiveTab] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  const handleTabId = (id) => {
+    setTabId(id)
+  }
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
@@ -33,6 +42,8 @@ export default function Home() {
     }
   }
 
+
+
   useEffect(() => {
     getData();
   }, [])
@@ -41,12 +52,19 @@ export default function Home() {
     try {
       const res = await api.get("/home/home_page_api");
       setHomePageData(res.data.data);
+      setLoading(false)
     } catch (err) {
+      setLoading(false)
       console.log(err);
     }
   }
 
+  if (loading) {
+    return <Loader />
+  }
+
   return (
+
     <>
       <div id="content" className="site-content ">
         <section className="slider style_page_thirteen nav_position_one position-relative">
@@ -57,6 +75,7 @@ export default function Home() {
                 delay: 2500,
                 disableOnInteraction: false,
               }}
+              loop
               modules={[Navigation, Autoplay]} className="mySwiper">
               {
                 homePageData?.banner?.map((ele, ind) =>
@@ -80,11 +99,11 @@ export default function Home() {
                                   {ele.content}
                                 </p>
                                 <ul className="animate_down">
-                                  <li className="theme_btn_all color_two">
-                                    <a href="#" className="theme-btn one">Our Solutions</a>
-                                  </li>
+                                  {/* <li className="theme_btn_all color_two">
+                                    <a href="#" className="theme-btn one">Get Quote</a>
+                                  </li> */}
                                   <li className="theme_btn_all">
-                                    <a href="#" className="theme-btn one color_white">Our Projects</a>
+                                    <Link href="/contact/contact-us" className="theme-btn one color_white">Get A Quote</Link>
                                   </li>
                                 </ul>
                               </div>
@@ -136,9 +155,9 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="ovarlay_link">
-                      <a href="#">
+                      <Link href="/contact/contact-us">
                         <i className="icon-right-arrow"></i>
-                      </a>
+                      </Link>
                     </div>
                     <div className="overlay_content">
                       <h2>
@@ -160,7 +179,7 @@ export default function Home() {
                           <img src="assets/images/service-ico-1.png" className="img-fluid" alt="Service Image" />
                         </div>
                         <h2>
-                          <a href="#">Increase your profit margins</a>
+                          <a href="">Increase your profit margins</a>
                         </h2>
                         <p>Indignation sed dislike men who are beguiled and demoralized.</p>
                         <ul>
@@ -177,9 +196,9 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="ovarlay_link">
-                      <a href="#">
+                      <Link href="/contact/contact-us">
                         <i className="icon-right-arrow"></i>
-                      </a>
+                      </Link>
                     </div>
                     <div className="overlay_content">
                       <h2>
@@ -219,9 +238,9 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="ovarlay_link">
-                      <a href="#">
+                      <Link href="/contact/contact-us">
                         <i className="icon-right-arrow"></i>
-                      </a>
+                      </Link>
                     </div>
                     <div className="overlay_content">
                       <h2>
@@ -250,42 +269,52 @@ export default function Home() {
             </div>
 
             <Swiper
-              slidesPerView={3}
-              centeredSlides={true}
-              spaceBetween={30}
+              slidesPerView={1}
+              spaceBetween={40}
               grabCursor={true}
-
               autoplay={{
                 delay: 2500,
-                disableOnInteraction: false,
+                disableOnInteraction: true,
+              }}
+              breakpoints={{
+                680: {
+                  slidesPerView: 2
+                },
+                1000: {
+                  slidesPerView: 3
+                },
+                1366: {
+                  slidesPerView: 4,
+                },
               }}
 
               modules={[Autoplay]}
-              className="mySwiper"
+              className="mySwiper m-5"
             >
 
               {
                 homePageData?.solution?.map((ele, ind) =>
-                  <SwiperSlide key={ind}>
-                    <div style={{ width: "350.6px", marginRight: "30px" }}>
+                  <SwiperSlide key={ind} >
+                    <div >
                       <div className="project_post style_seven">
                         <div className="image_box">
                           <img src={ele.solution_image} className="img-fluid" alt="img" />
                         </div>
                         <div className="content_box">
-                          <h2 className="title_pro"><a href="#" rel="bookmark">Bookkeeping</a></h2>
+                          <h2 className="title_pro"><Link href={`/solution/${ele.solution_slug}`} rel="bookmark" style={{ color: "white" }}>{ele.solution_name}</Link></h2>
                           <a className="quote-btn" href="#">Get A Quote</a>
                           <div className="image_zoom_box ">
-                            <a href="#" data-fancybox="gallery"><span
-                              className="fa fa-plus zoom_icon"></span></a>
+                            <Link href={`/solution/${ele.solution_slug}`} data-fancybox="gallery" ><span
+                              className="fa fa-plus zoom_icon" style={{ color: "white" }}></span></Link>
                           </div>
                         </div>
                         <div className="overlay ">
-                          <div className="text ">
-                            <h2 className="title_pro"><a href="#" rel="bookmark">{ele.solution_name}</a></h2>
-                            <p className="short_desc">{ele.content}</p>
-                            <a href="#" className="read_more tp_five ">Read More</a>
-                          </div>
+                          <Link href={`/solution/${ele.solution_slug}`}>
+                            <div className="text d-flex flex-column justify-content-center">
+                              <h2 className="title_pro"><Link href={`/solution/${ele.solution_slug}`} rel="bookmark">{ele.solution_name}</Link></h2>
+                              <p className="short_desc">{ele.content}</p>
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -407,69 +436,64 @@ export default function Home() {
         <section className="funfact-section bg_light_1">
           <div className="pd_bottom_80"></div>
           <div className="container">
+            <div className="section__counter four_column">
+              <div className="grid_show_case grid_layout clearfix row">
+                <div className="grid_box _card col-6 col-lg-3" >
+                  <div className="counter-block style_one count-box counted">
+                    <div className="icon_box  ">
 
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="section__counter four_column">
-                  <div className="grid_show_case grid_layout clearfix" style={{ position: "relative", height: "235px" }}>
-                    <div className="grid_box _card" style={{ position: "absolute", left: "0px", top: "0px" }}>
-                      <div className="counter-block style_one count-box counted">
-                        <div className="icon_box  ">
-
-                          <div className="coun_ter">
-                            <span className="count-text" data-speed="1500" data-stop="1423">3000</span>
-                            <small>+</small>
-                          </div>
-                        </div>
-                        <div className="content_box">
-                          <h6>Global Clients</h6>
-
-                        </div>
+                      <div className="coun_ter">
+                        <span className="count-text" data-speed="1500" data-stop="1423">3000</span>
+                        <small>+</small>
                       </div>
                     </div>
-                    <div className="grid_box _card" style={{ position: "absolute", left: "277.5px", top: "0px" }}>
-                      <div className="counter-block style_one count-box counted">
-                        <div className="icon_box  ">
+                    <div className="content_box">
+                      <h6>Global Clients</h6>
 
-                          <div className="coun_ter">
-                            <span className="count-text" data-speed="1500" data-stop="100">500</span>
-                            <small>+</small>
-                          </div>
-                        </div>
-                        <div className="content_box">
-                          <h6>Financial Planners</h6>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid_box _card col-6 col-lg-3" >
+                  <div className="counter-block style_one count-box counted">
+                    <div className="icon_box  ">
 
-                        </div>
+                      <div className="coun_ter">
+                        <span className="count-text" data-speed="1500" data-stop="100">500</span>
+                        <small>+</small>
                       </div>
                     </div>
-                    <div className="grid_box _card" style={{ position: "absolute", left: "555px", top: "0px" }}>
-                      <div className="counter-block style_one count-box counted">
-                        <div className="icon_box  ">
+                    <div className="content_box">
+                      <h6>Financial Planners</h6>
 
-                          <div className="coun_ter">
-                            <span className="count-text" data-speed="1500" data-stop="82">22</span>
-                            <small>+</small>
-                          </div>
-                        </div>
-                        <div className="content_box">
-                          <h6>Awards Wins</h6>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid_box _card col-6 col-lg-3">
+                  <div className="counter-block style_one count-box counted">
+                    <div className="icon_box  ">
 
-                        </div>
+                      <div className="coun_ter">
+                        <span className="count-text" data-speed="1500" data-stop="82">22</span>
+                        <small>+</small>
                       </div>
                     </div>
-                    <div className="grid_box _card" style={{ position: "absolute", left: "832.5px", top: "0px" }}>
-                      <div className="counter-block style_one count-box counted">
-                        <div className="icon_box  ">
+                    <div className="content_box">
+                      <h6>Awards Wins</h6>
 
-                          <div className="coun_ter">
-                            <span className="count-text" data-speed="1500" data-stop="82">92</span>
-                            <small>%</small>
-                          </div>
-                        </div>
-                        <div className="content_box">
-                          <h6>Client Satisfaction</h6>
-                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid_box _card col-6 col-lg-3">
+                  <div className="counter-block style_one count-box counted">
+                    <div className="icon_box  ">
+
+                      <div className="coun_ter">
+                        <span className="count-text" data-speed="1500" data-stop="82">92</span>
+                        <small>%</small>
                       </div>
+                    </div>
+                    <div className="content_box">
+                      <h6>Client Satisfaction</h6>
                     </div>
                   </div>
                 </div>
@@ -505,7 +529,7 @@ export default function Home() {
                     <span className="step_no">01</span>
                     <div className="text_box">
                       <h2>
-                        <a href="#" target="_blank">
+                        <a href="#">
                           {homePageData?.our_expertise?.subheading1} </a>
                       </h2>
                       <p>{homePageData?.our_expertise?.content1}</p>
@@ -522,7 +546,7 @@ export default function Home() {
                     <span className="step_no">02</span>
                     <div className="text_box">
                       <h2>
-                        <a href="#" target="_blank">
+                        <a href="#">
                           {homePageData?.our_expertise?.subheading2} </a>
                       </h2>
                       <p>{homePageData?.our_expertise?.content2}</p>
@@ -539,7 +563,7 @@ export default function Home() {
                     <span className="step_no">03</span>
                     <div className="text_box">
                       <h2>
-                        <a href="#" target="_blank">
+                        <a href="#">
                           {homePageData?.our_expertise?.subheading3} </a>
                       </h2>
                       <p>{homePageData?.our_expertise?.content3}</p>
@@ -556,7 +580,7 @@ export default function Home() {
                     <span className="step_no">04</span>
                     <div className="text_box">
                       <h2>
-                        <a href="#" target="_blank">
+                        <a href="#">
                           {homePageData?.our_expertise?.subheading4} </a>
                       </h2>
                       <p>{homePageData?.our_expertise?.content4}</p>
@@ -620,29 +644,29 @@ export default function Home() {
                   <div className="tabs_header clearfix">
                     <ul className="showcase_tabs_btns nav-pills nav   clearfix">
                       <li className="nav-item">
-                        <a className="s_tab_btn nav-link active" data-tab="#tabtabone">01. Affordable</a>
+                        <a className={`s_tab_btn nav-link ${tabId == 1 ? "active" : ""}`} onClick={() => handleTabId(1)}>01. Affordable</a>
                       </li>
                       <li className="nav-item">
-                        <a className="s_tab_btn nav-link" data-tab="#tabtabtwo">02. Knowledge</a>
+                        <a className={`s_tab_btn nav-link ${tabId == 2 ? "active" : ""}`} onClick={() => handleTabId(2)}>02. Knowledge</a>
                       </li>
                       <li className="nav-item">
-                        <a className="s_tab_btn nav-link" data-tab="#tabtabthree">03. Saves Time</a>
+                        <a className={`s_tab_btn nav-link ${tabId == 3 ? "active" : ""}`} onClick={() => handleTabId(3)}>03. Saves Time</a>
                       </li>
                       <li className="nav-item">
-                        <a className="s_tab_btn nav-link" data-tab="#tabtabtfour">04. Fast &amp; Quality</a>
+                        <a className={`s_tab_btn nav-link ${tabId == 4 ? "active" : ""}`} onClick={() => handleTabId(4)}>04. Fast &amp; Quality</a>
                       </li>
                       <li className="nav-item">
-                        <a className="s_tab_btn nav-link" data-tab="#tabtabfive">05. Experienced</a>
+                        <a className={`s_tab_btn nav-link ${tabId == 5 ? "active" : ""}`} onClick={() => handleTabId(5)}>05. Experienced</a>
                       </li>
                     </ul>
                     <div className="toll_free">
-                      <a href="tel:180667586677"> <i className="icon-phone-call"></i>Call For Free
+                      <a href="tel:+916398798204"> <i className="icon-phone-call"></i>Call For Free
                         Consultation</a>
                     </div>
                   </div>
                   <div className="s_tab_wrapper">
                     <div className="s_tabs_content">
-                      <div className="s_tab fade active-tab show" id="tabtabone">
+                      <div className={tabId == 1 ? "s_tab fade active-tab show" : "s_tab fade"} id="tabtabone">
                         <div className="tab_content one"
                           style={{ backgroundImage: "url(assets/images/tab-image.jpg)" }}>
                           <div className="content_image">
@@ -657,71 +681,54 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
-                      <div className="s_tab fade" id="tabtabtwo">
+                      <div className={tabId == 2 ? "s_tab fade active-tab show" : "s_tab fade"} id="tabtabtwo">
                         <div className="tab_content one"
                           style={{ backgroundImage: "url(/assets/images/blog/blog-image-8.jpg)" }}>
                           <div className="content_image">
-                            <h6>Why Ozark</h6>
+                            <h6>Why Knowledge Matters</h6>
 
-                            <h2>Affordable &amp; Flexible</h2>
+                            <h2>Expertise &amp; Innovation</h2>
 
-                            <p>Must explain too you how all this mistaken idea of denouncing pleasures
-                              praising pain was born and we will give you complete account of the system
-                              the actual teachings of the great explorer.</p>
+                            <p>At Knowledge Inc., we pride ourselves on delivering solutions driven by deep expertise and innovative thinking, empowering organizations to achieve their goals with clarity and confidence.</p>
 
-                            <a href="#" target="_blank" rel="nofollow" className="rd_more">Read More <i
-                              className="icon-right-arrow"></i></a>
                           </div>
                         </div>
                       </div>
-                      <div className="s_tab fade" id="tabtabthree">
+                      <div className={tabId == 3 ? "s_tab fade active-tab show" : "s_tab fade"} id="tabtabthree">
                         <div className="tab_content one"
                           style={{ backgroundImage: "url(/assets/images/about/about-4.jpg)" }}>
                           <div className="content_image">
-                            <h6>Why Ozark</h6>
+                            <h6>Why Save Time</h6>
 
-                            <h2>Affordable &amp; Flexible</h2>
+                            <h2>Efficient &amp; Reliable</h2>
 
-                            <p>Must explain too you how all this mistaken idea of denouncing pleasures
-                              praising pain was born and we will give you complete account of the system
-                              the actual teachings of the great explorer.</p>
+                            <p>At SaveTime Solutions, we focus on streamlining processes and reducing inefficiencies,
+                              helping you achieve your goals faster while maintaining top-notch quality and reliability.</p>
 
-                            <a href="#" target="_blank" rel="nofollow" className="rd_more">Read More <i
-                              className="icon-right-arrow"></i></a>
                           </div>
                         </div>
                       </div>
-                      <div className="s_tab fade" id="tabtabtfour">
+                      <div className={tabId == 4 ? "s_tab fade active-tab show" : "s_tab fade"} id="tabtabtfour">
                         <div className="tab_content one"
                           style={{ backgroundImage: "url(/assets/images/about/about-2.jpg)" }}>
                           <div className="content_image">
-                            <h6>Why Ozark</h6>
+                            <h6>Excellence at Speed</h6>
 
-                            <h2>Affordable &amp; Flexible</h2>
+                            <h2>Fast &amp; High-Quality Solutions</h2>
 
-                            <p>Must explain too you how all this mistaken idea of denouncing pleasures
-                              praising pain was born and we will give you complete account of the system
-                              the actual teachings of the great explorer.</p>
+                            <p>Our approach combines rapid delivery with uncompromising quality, ensuring your projects are completed on time and exceed expectations every step of the way.</p>
 
-                            <a href="#" target="_blank" rel="nofollow" className="rd_more">Read More <i
-                              className="icon-right-arrow"></i></a>
                           </div>
                         </div>
                       </div>
-                      <div className="s_tab fade" id="tabtabfive">
+                      <div className={tabId == 5 ? "s_tab fade active-tab show" : "s_tab fade"} id="tabtabfive">
                         <div className="tab_content one"
                           style={{ backgroundImage: "url(/assets/images/about/about-3.jpg)" }}>
                           <div className="content_image">
-                            <h6>Why Ozark</h6>
+                            <h6>The Power of Experience</h6>
+                            <h2>Expertise You Can Trust</h2>
+                            <p>With years of proven experience, we bring deep knowledge and reliable solutions to every project, ensuring consistent excellence and satisfaction for our clients.</p>
 
-                            <h2>Affordable &amp; Flexible</h2>
-
-                            <p>Must explain too you how all this mistaken idea of denouncing pleasures
-                              praising pain was born and we will give you complete account of the system
-                              the actual teachings of the great explorer.</p>
-
-                            <a href="#" target="_blank" rel="nofollow" className="rd_more">Read More <i
-                              className="icon-right-arrow"></i></a>
                           </div>
                         </div>
                       </div>
@@ -749,62 +756,68 @@ export default function Home() {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-11 m-auto">
+              <div className="col-lg-12 m-auto">
                 <div className="testimonial_sec dark_color style_two">
                   <div
                     className="swiper single_swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div>
+                      {
+                        homePageData?.testimonial?.length > 0 && (
+                          <Swiper
+                            slidesPerView={1}
+                            spaceBetween={30}
+                            navigation={true}
+                            modules={[Navigation]}
+                            className="mySwiper"
+                            initialSlide={1}
+                            centeredSlides={true}
+                            loop
+                            breakpoints={{
+                              1000: {
+                                slidesPerView: 2
+                              },
+                              1366: {
+                                slidesPerView: 3,
+                              },
+                            }}
+                          >
 
-                      <Swiper
-
-                        slidesPerView={1}
-                        spaceBetween={30}
-                        navigation={true}
-                        modules={[Navigation]}
-                        className="mySwiper"
-                        initialSlide={1}
-                        centeredSlides={true}
-                        loop
-                      >
-
-                        {
-                          homePageData?.testimonial?.map((ele, ind) =>
-                            <SwiperSlide key={ind}>
-                              <div
-                                style={{ width: "490.333px", marginRight: "30px" }}>
-                                <div className="testimonial_box">
-                                  <div className="authour_image">
-                                    <i className="icon-quote"></i>
-                                    <img src={ele.image} alt="image" />
-                                  </div>
-                                  <div className="c_content">
-                                    <div className="content_in">
-                                      <h4>{ele.name}</h4>
-                                      <span>{ele.designation}</span>
+                            {
+                              homePageData?.testimonial?.map((ele, ind) =>
+                                <SwiperSlide key={ind}>
+                                  <div className="testimonial_box">
+                                    <div className="authour_image">
+                                      <i className="icon-quote"></i>
+                                      <img src={ele.image} alt="image" />
+                                    </div>
+                                    <div className="c_content">
+                                      <div className="content_in">
+                                        <h4>{ele.name}</h4>
+                                        <span>{ele.designation}</span>
+                                      </div>
+                                    </div>
+                                    <div className="pd_bottom_20"></div>
+                                    <div className="comment">
+                                      {ele.content}
+                                    </div>
+                                    <div className="rating">
+                                      <ul>
+                                        <li>
+                                          {
+                                            [1, 2, 3, 4, 5].map((e, i) => (
+                                              ele.rating >= e ? <span className="fa fa-star fill" key={i}></span> : <span
+                                                className="fa fa-star empty" key={i}></span>
+                                            ))
+                                          }
+                                        </li>
+                                      </ul>
                                     </div>
                                   </div>
-                                  <div className="pd_bottom_20"></div>
-                                  <div className="comment">
-                                    {ele.content}
-                                  </div>
-                                  <div className="rating">
-                                    <ul>
-                                      <li>
-                                        {
-                                          [1, 2, 3, 4, 5].map((e, i) => (
-                                            ele.rating >= e ? <span className="fa fa-star fill" key={i}></span> : <span
-                                              className="fa fa-star empty" key={i}></span>
-                                          ))
-                                        }
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </SwiperSlide>)
-                        }
-                      </Swiper>
-
+                                </SwiperSlide>)
+                            }
+                          </Swiper>
+                        )
+                      }
                     </div>
 
                   </div>
@@ -865,18 +878,18 @@ export default function Home() {
                           <ul className="post-info clearfix">
 
                             <li className="date">
-                              <a href="blog-single.html">
+                              <Link href={`/blogs/${ele.slug}`}>
                                 <span className="icon-calendar me-2"></span>
-                                {ele.blog_date}
-                              </a>
+                                <DateFormatter Date={ele.blog_date}/>
+                              </Link>
                             </li>
                           </ul>
-                          <h2 className="entry-title"><a href="blog-single.html">{ele.heading}</a></h2>
+                          <h2 className="entry-title" style={{ height: "110px",display:"flex",alignItems:"center" }}><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h2>
                           <p className="short_desc">{ele.content.substring(0, 90)}...</p>
                           <div className="bottom_content clearfix">
                             <div className="continure_reading">
-                              <a href="blog-single.html" className="read_more type_one">
-                                Continue Reading <span className="icon-arrow-right"></span></a>
+                              <Link href={`/blogs/${ele.slug}`} className="read_more type_one">
+                                Continue Reading <span className="icon-arrow-right"></span></Link>
                             </div>
 
                           </div>
@@ -903,12 +916,12 @@ export default function Home() {
                   <div className="title_sections">
                     <div className="before_title">Solutions for your business</div>
                     <h2 className="title_big">Have Questions? We're Here to Help!</h2>
-                    <p>Got questions or need assistance? Our team is ready to provide the support you need. Reach out today, and we'll ensure you get the answers you're looking for!</p>
+                    <p>Have questions or need assistance? Our team is here to help with answers, guidance, and support. Reach out today, and we’ll ensure you get the solutions you need.</p>
                   </div>
                 </div>
                 <div className="pd_bottom_20"></div>
                 <div className="theme_btn_all color_one">
-                  <a href="#" target="_blank" rel="nofollow" className="theme-btn one">Enroll Now</a>
+                  {/* <a href="#" target="_blank" rel="nofollow" className="theme-btn one">Enroll Now</a> */}
                 </div>
                 <div className="pd_bottom_40"></div>
               </div>

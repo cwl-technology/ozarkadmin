@@ -14,6 +14,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import api from '@/_config/config';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Loader from '@/_components/Loader';
 
 function Service() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -22,6 +23,7 @@ function Service() {
     const [solutionList, setSolutionList] = useState();
     const [allTestimonial, setAllTestimonial] = useState();
     const [activeTestimonialId, setActiveTestimonialId] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     const pathname = usePathname();
     const solution_slug = pathname.split("/")[2];
@@ -43,7 +45,9 @@ function Service() {
                 solution_slug: solution_slug
             })
             setSolutionData(res.data.data);
+            setLoading(false);
         } catch (err) {
+            setLoading(false)
             console.log(err);
         }
     }
@@ -78,6 +82,9 @@ function Service() {
         setActiveTestimonialId(id);
     }
 
+    if(loading){
+        return <Loader/>
+    }
 
     return (
         <>
@@ -92,13 +99,13 @@ function Service() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="banner_title_inner">
-                                        <div className="title_page">{solutionData?.solution_name}</div>
+                                        <h1 className="title_page">{solutionData?.solution_name}</h1>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="breadcrumbs creote">
                                         <ul className="breadcrumb m-auto">
-                                            <li><a href="index-2.html">Home</a></li>
+                                            <li><Link href="/">Home</Link></li>
                                             <li className="active">{solutionData?.solution_name}</li>
                                         </ul>
                                     </div>
@@ -111,7 +118,7 @@ function Service() {
                     <div className="row default_row">
                         <aside id="secondary" className="widget-area all_side_bar col-lg-4 col-md-12 col-sm-12">
                             <div className="service_siderbar side_bar">
-                                <div className="pd_top_85"></div>
+                                <div className="pd_top_45"></div>
                                 <div className="widgets_grid_box">
                                     <div className="widget creote_widget_service_list">
                                         <h4 className="widget-title">Our Services</h4>
@@ -137,29 +144,30 @@ function Service() {
                                                     className="phone_number">+91-8743877462</a> <a href="mailto:info@theozarkco.com"
                                                         className="mailid">info@theozarkco.com</a> </div>
                                             </div>
-                                            <a href="#" className="theme-btn one">Appointment</a>
+                                            <Link href="/contact/contact-us" className="theme-btn one">Appointment</Link>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="pd_bottom_65"></div>
+                                <div className="pd_bottom_15"></div>
                             </div>
                         </aside>
+
                         <div id="primary" className="content-area service col-lg-8 col-md-12 col-sm-12 col-xs-12">
                             <main id="main" className="site-main" role="main">
-                                <div className="pd_top_85"></div>
+                                <div className="pd_top_45"></div>
                                 <article className="clearfix service type-service status-publish has-post-thumbnail hentry">
                                     <div className="title_all_box style_one dark_color">
                                         <div className="title_sections left">
-                                            <div className="before_title">{solutionData?.solution_slug}</div>
-                                            <div className="title">{solutionData?.heading}</div>
+                                            {/* <div className="before_title">{solutionData?.solution_slug}</div> */}
+                                            <h2 className="title">{solutionData?.heading}</h2>
                                             <p>{solutionData?.content}</p>
                                             <p dangerouslySetInnerHTML={{ __html: solutionData?.solution_description || '' }}></p>
                                         </div>
                                     </div>
                                     <div className="row no-space">
                                         <div
-                                            className="col-xl-6 col-lg-6 col-md-6 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
-                                            <div className="icon_box_all style_one">
+                                            className="col-xl-6 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
+                                            <div className="icon_box_all style_one d-flex align-items-center">
                                                 <div className="icon_content ">
                                                     <div className="icon"> <img src={solutionData?.icon1} className="img-fluid svg_image"
                                                         alt="" /> </div>
@@ -172,8 +180,8 @@ function Service() {
                                             </div>
                                         </div>
                                         <div
-                                            className="col-xl-6 col-lg-6 col-md-6 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
-                                            <div className="icon_box_all style_one">
+                                            className="col-xl-6 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
+                                            <div className="icon_box_all style_one d-flex align-items-center">
                                                 <div className="icon_content ">
                                                     <div className="icon"> <img src={solutionData?.icon2} className="img-fluid svg_image"
                                                         alt="" /> </div>
@@ -191,7 +199,7 @@ function Service() {
                                     <div className="row no-space">
                                         <div
                                             className="col-xl-8 col-lg-8 col-md-8 col-12 mb-5 mb-lg-5 mb-xl-0 ps-0 ps-lg-0 pe-0 pe-lg-0 pe-xl-3">
-                                            <h3 style={{marginBottom:"10px"}}>Why choose to outsourcing us?</h3>
+                                            <h3 style={{ marginBottom: "10px" }}>Why choose to outsourcing us?</h3>
                                             <div className="content_box_cn style_one" dangerouslySetInnerHTML={{ __html: solutionData?.why_choose_description || '' }}></div>
                                         </div>
                                         <div
@@ -276,20 +284,25 @@ function Service() {
                         <div className="col-lg-12">
                             <div className="testimonial_all owl_new_one ">
                                 <Swiper
-                                    slidesPerView={2}
+                                    slidesPerView={1}
                                     spaceBetween={30}
-
+                                    breakpoints={{
+                                        992: {
+                                            slidesPerView: 2
+                                        }
+                                    }}
                                     pagination={{
                                         clickable: true,
                                     }}
                                     navigation={true}
                                     modules={[Autoplay, Navigation]}
                                     className="mySwiper"
+
                                 >
                                     {
                                         testimonialData?.map((ele, ind) => (
                                             <SwiperSlide key={ind}>
-                                                <div className="owl-item cloned" style={{ width: "555px" }}>
+                                                <div className="owl-item cloned">
                                                     <div className="testimonial_box type_two">
                                                         <div className="upper_content">
                                                             <div className="image_box">

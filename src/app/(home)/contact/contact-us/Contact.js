@@ -1,13 +1,16 @@
 "use client"
 import { useForm } from "react-hook-form";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import api from "@/_config/config";
 import toast from "react-hot-toast";
+import Link from "next/link";
+import Loader from "@/_components/Loader";
 
 
 
 function Contact() {
-   const { register, handleSubmit, reset,formState: { errors, isSubmitting } } = useForm();
+   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
+   const [loading, setLoading] = useState(true);
 
    const onSubmit = async (data) => {
       try {
@@ -23,6 +26,17 @@ function Contact() {
          console.log(err);
       }
    }
+
+   useEffect(() => {
+      if (loading) {
+         setTimeout(() => {
+            setLoading(false);
+         }, 700);
+      }
+   }, [])
+   if (loading) {
+      return <Loader />
+   }
    return (
       <>
          <div id="content" className="site-content ">
@@ -37,15 +51,15 @@ function Contact() {
                      <div className="row">
                         <div className="col-md-12">
                            <div className="banner_title_inner">
-                              <div className="title_page">
+                              <h1 className="title_page">
                                  Contact Us
-                              </div>
+                              </h1>
                            </div>
                         </div>
                         <div className="col-lg-12">
                            <div className="breadcrumbs creote">
                               <ul className="breadcrumb m-auto">
-                                 <li><a href="index-2.html">Home</a></li>
+                                 <li><Link href="/">Home</Link></li>
                                  <li className="active">Contact Us</li>
                               </ul>
                            </div>

@@ -150,3 +150,36 @@
     }
 
 }
+
+@media (max-width:1200px) {
+    .header .header_content_collapse .navigation_menu .navbar_nav li {
+        margin-right: 30px;
+    }
+
+}
+
+@media (max-width:1050px) {
+    .header .header_content_collapse .navigation_menu .navbar_nav li {
+        margin-right: 30px;
+    }
+
+    .header_content_collapse {
+        display: none !important;
+    }
+    #myTopnav.navbar #togglericon:after {
+        content: "☰";
+        position: absolute;
+        visibility: visible;
+        color: black;
+        font-size: 1.5rem;
+        width: 1.8rem;
+        height: 1.8rem;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8rem;
+        border-radius: 4px;
+        border: 2px solid #ffffff00;
+    }
+
+}
