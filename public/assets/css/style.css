@@ -432,14 +432,15 @@ input[type="password"]{
 
 .footer {
   padding-top: 10px;
-  background: #1F2530;
-  color: #ffffff;
+  background: #fcfcfc;
+  color: #434242;
   font-size: 14px;
   position: relative;
 }
 
 .footer .info {
   color: gray;
+  font-weight: 500;
 }
 
 .footer .info i {
@@ -466,7 +467,7 @@ input[type="password"]{
   font-weight: bold;
   position: relative;
   padding-bottom: 12px;
-  color: white;
+  color: #434242;
 }
 
 .footer .footer-links {
@@ -499,6 +500,7 @@ input[type="password"]{
 .footer .footer-links ul a {
   text-decoration: none;
   color: grey;
+  font-weight: 500;
 }
 
 .footer .footer-contact p {
@@ -506,6 +508,7 @@ input[type="password"]{
   margin-top: 0.5rem;
   /* margin-left: 2rem; */
   width: 350px;
+  font-weight: 500;
 }
 
 .footer .copyright {
@@ -522,7 +525,7 @@ input[type="password"]{
 }
 
 .footer .copyright .sitename {
-  color: #ffffff;
+  color: #434242;
 }
 
 

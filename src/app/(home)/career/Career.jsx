@@ -337,7 +337,7 @@ function Career() {
                                                                             value: /^\S+@\S+\.\S+$/,
                                                                             message: "Invalid Email !"
                                                                         }
-                                                                    })} id="billing_email" placeholder="Email" autoComplete="email username"
+                                                                    })} id="billing_email" placeholder="Email" 
                                                                         style={errors.email ? {
                                                                             borderColor: "red"
                                                                         } : {}} />

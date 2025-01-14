@@ -27,31 +27,63 @@ function Header() {
 
                 <section className="header header_default style_five get_sticky_header ">
                     <div className="navbar d-xl-none d-md-none" id="myTopnav">
-                        <div className="mob-logo-box"> <a href="index.html" className="logo navbar-brand"> <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default"/> </a> </div>
+                        <div className="mob-logo-box"> <a href="index.html" className="logo navbar-brand"> <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default" /> </a> </div>
                         <label htmlFor="togglericon" className="toggler" checked></label>
                         <input type="checkbox" id="togglericon" className="toggler" />
-                        <div className="nav at-right"> <a href="#top">Home</a> <a href="#about">About</a>
+                        <div className="nav at-right">
                             <div className="dropdown">
-                                <label htmlFor="toggle-1">Services</label>
+                                <label htmlFor="toggle-1">Solutions</label>
                                 <input type="checkbox" id="toggle-1" />
                                 <ul>
-                                    <li><a href="#">Internet Of Things</a></li>
-                                    <li><a href="#">Game Development</a></li>
-                                    <li><a href="#">Game Design</a></li>
-                                    <li><a href="#">History Telling</a></li>
+                                    {
+                                        solutionList?.map((ele, ind) => <li key={ind}><Link href={`/solution/${ele.solution_slug}`} >{ele.solution_name}</Link></li>)
+                                    }
                                 </ul>
                             </div>
                             <div className="dropdown">
-                                <label htmlFor="toggle-2">Social</label>
+                                <label htmlFor="toggle-2">About Us</label>
                                 <input type="checkbox" id="toggle-2" />
                                 <ul>
-                                    <li><a href="#">Facebook</a></li>
-                                    <li><a href="#">Twitter</a></li>
-                                    <li><a href="#">Tiktok</a></li>
-                                    <li><a href="#">Medium</a></li>
+                                    <li><Link href="/about-us/our_story">Our Story</Link></li>
+                                    <li><Link href="/about-us/leadership_team">Leadership Team</Link></li>
+                                    <li><Link href="/about-us/vision-and_value">Vision & Value</Link></li>
                                 </ul>
                             </div>
-                            <a href="#">Contact</a> </div>
+                            <div className="dropdown">
+                                <label htmlFor="toggle-3">Success Story</label>
+                                <input type="checkbox" id="toggle-3" />
+                                <ul>
+                                    <li><Link href="/success-story/cliend-testimonials">Client Testimonials</Link></li>
+                                    <li><Link href="/success-story/case-study">Case Study</Link></li>
+                                </ul>
+                            </div>
+                            <div className="dropdown">
+                                <label htmlFor="toggle-4">Contact</label>
+                                <input type="checkbox" id="toggle-4" />
+                                <ul>
+                                    <li><Link href="/contact/contact-us">Contact us</Link></li>
+                                    <li><Link href="/contact/faqs">FAQs</Link></li>
+                                </ul>
+                            </div>
+                            <div className="dropdown">
+                                <label htmlFor="toggle-5">Why Choose Us</label>
+                                <input type="checkbox" id="toggle-5" />
+                                <ul>
+                                    <li><Link href="/why-choose-us/our-expertise">Our Expertise</Link></li>
+                                </ul>
+                            </div>
+
+                            <div className="dropdown">
+                                <label htmlFor="toggle-6">Resource</label>
+                                <input type="checkbox" id="toggle-6" />
+                                <ul>
+                                    <li><Link href="/resource/blogs">Blogs</Link></li>
+                                </ul>
+                            </div>
+
+                            <a href="/career">Careers</a>
+                            <a href="/life-at-ozark">Life@Ozark</a>
+                        </div>
                     </div>
 
                     <div className="container-fluid">
