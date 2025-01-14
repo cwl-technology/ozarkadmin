@@ -433,13 +433,14 @@ input[type="password"]{
 .footer {
   padding-top: 10px;
   background: #fcfcfc;
+  background: url('/assets/images/footer_one.jpg');
   color: #434242;
   font-size: 14px;
   position: relative;
 }
 
 .footer .info {
-  color: gray;
+  color: #5b5858;
   font-weight: 500;
 }
 
@@ -468,6 +469,8 @@ input[type="password"]{
   position: relative;
   padding-bottom: 12px;
   color: #434242;
+  color: #2b2929;
+  
 }
 
 .footer .footer-links {
@@ -499,7 +502,7 @@ input[type="password"]{
 
 .footer .footer-links ul a {
   text-decoration: none;
-  color: grey;
+  color: #5b5858;
   font-weight: 500;
 }
 
@@ -507,7 +510,7 @@ input[type="password"]{
   margin-bottom: 5px;
   margin-top: 0.5rem;
   /* margin-left: 2rem; */
-  width: 400px;
+  /* width: 370px; */
   font-weight: 500;
 }
 
@@ -521,11 +524,11 @@ input[type="password"]{
 }
 
 .footer .copyright p span {
-  color: grey;
+  color: #5b5858;
 }
 
 .footer .copyright .sitename {
-  color: #434242;
+  color: #2b2929;
 }
 
 

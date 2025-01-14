@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 function Header() {
 
     const [solutionList, setSolutionList] = useState();
+    const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
         getData();
@@ -29,14 +30,14 @@ function Header() {
                     <div className="navbar d-xl-none d-md-none" id="myTopnav">
                         <div className="mob-logo-box"> <a href="index.html" className="logo navbar-brand"> <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default" /> </a> </div>
                         <label htmlFor="togglericon" className="toggler" checked></label>
-                        <input type="checkbox" id="togglericon" className="toggler" />
-                        <div className="nav at-right">
+                        <input type="checkbox" id="togglericon" className="toggler" onClick={() => setToggle(!toggle)} />
+                        <div className={`nav at-right ${toggle ? "navigation-visible" : ""}`}>
                             <div className="dropdown">
                                 <label htmlFor="toggle-1">Solutions</label>
                                 <input type="checkbox" id="toggle-1" />
                                 <ul>
                                     {
-                                        solutionList?.map((ele, ind) => <li key={ind}><Link href={`/solution/${ele.solution_slug}`} >{ele.solution_name}</Link></li>)
+                                        solutionList?.map((ele, ind) => <li key={ind}><Link href={`/solution/${ele.solution_slug}`} onClick={() => setToggle(!toggle)}>{ele.solution_name}</Link></li>)
                                     }
                                 </ul>
                             </div>
@@ -44,32 +45,32 @@ function Header() {
                                 <label htmlFor="toggle-2">About Us</label>
                                 <input type="checkbox" id="toggle-2" />
                                 <ul>
-                                    <li><Link href="/about-us/our_story">Our Story</Link></li>
-                                    <li><Link href="/about-us/leadership_team">Leadership Team</Link></li>
-                                    <li><Link href="/about-us/vision-and_value">Vision & Value</Link></li>
+                                    <li><Link href="/about/our_story" onClick={() => setToggle(!toggle)}>Our Story</Link></li>
+                                    <li><Link href="/about/leadership_team" onClick={() => setToggle(!toggle)}>Leadership Team</Link></li>
+                                    <li><Link href="/about/vision-and_value" onClick={() => setToggle(!toggle)}>Vision & Value</Link></li>
                                 </ul>
                             </div>
                             <div className="dropdown">
                                 <label htmlFor="toggle-3">Success Story</label>
                                 <input type="checkbox" id="toggle-3" />
                                 <ul>
-                                    <li><Link href="/success-story/cliend-testimonials">Client Testimonials</Link></li>
-                                    <li><Link href="/success-story/case-study">Case Study</Link></li>
+                                    <li><Link href="/success-story/client-testimonial" onClick={() => setToggle(!toggle)}>Client Testimonials</Link></li>
+                                    <li><Link href="/success-story/case-study" onClick={() => setToggle(!toggle)}>Case Study</Link></li>
                                 </ul>
                             </div>
                             <div className="dropdown">
                                 <label htmlFor="toggle-4">Contact</label>
                                 <input type="checkbox" id="toggle-4" />
                                 <ul>
-                                    <li><Link href="/contact/contact-us">Contact us</Link></li>
-                                    <li><Link href="/contact/faqs">FAQs</Link></li>
+                                    <li><Link href="/contact/contact-us" onClick={() => setToggle(!toggle)}>Contact us</Link></li>
+                                    <li><Link href="/contact/faqs" onClick={() => setToggle(!toggle)}>FAQs</Link></li>
                                 </ul>
                             </div>
                             <div className="dropdown">
                                 <label htmlFor="toggle-5">Why Choose Us</label>
                                 <input type="checkbox" id="toggle-5" />
                                 <ul>
-                                    <li><Link href="/why-choose-us/our-expertise">Our Expertise</Link></li>
+                                    <li><Link href="/why-choose-us/our-expertise" onClick={() => setToggle(!toggle)}>Our Expertise</Link></li>
                                 </ul>
                             </div>
 
@@ -77,12 +78,12 @@ function Header() {
                                 <label htmlFor="toggle-6">Resource</label>
                                 <input type="checkbox" id="toggle-6" />
                                 <ul>
-                                    <li><Link href="/resource/blogs">Blogs</Link></li>
+                                    <li><Link href="/blogs" onClick={() => setToggle(!toggle)}>Blogs</Link></li>
                                 </ul>
                             </div>
 
-                            <a href="/career">Careers</a>
-                            <a href="/life-at-ozark">Life@Ozark</a>
+                            <Link href="/career" onClick={() => setToggle(!toggle)}>Careers</Link>
+                            <Link href="/life-at-ozark" onClick={() => setToggle(!toggle)}>Life@Ozark</Link>
                         </div>
                     </div>
 
