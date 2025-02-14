@@ -21,12 +21,13 @@ function Footer() {
         }
     }
 
-    console.log(solutionList);
 
     return (
         <>
 
-            <div className="footer">
+            <div className="footer" onContextMenu={(e) => {
+        e.preventDefault();
+      }}>
                 <div className="container footer-top">
                     <div className="row g-5">
                         <div className="col-12 col-md-6 col-lg-3 footer-about">
@@ -47,12 +48,13 @@ function Footer() {
                         <div className="col-12 col-md-6 col-lg-3 d-flex justify-content-lg-center">
                             <div>
                                 <h4>Get a quote</h4>
-                                <p className="info mb-0">Our phone number</p>
-                                <p>+91 6398798204</p>
+                                <p className="info mb-0">Our phone numbers</p>
+                                <p className='mb-0'>+91-8743877462</p>
+                                <p className=''>+91-7982760010</p>
 
                                 <p className="info mb-0">Our Location</p>
-                                <p className='mb-0'>A108 Adam Street</p>
-                                <p>New York, NY 535022</p>
+                                <p className='mb-0'>846/1, Ghitorni,</p>
+                                <p>Nr. Metro Pillar-115, Delhi-110030</p>
                             </div>
                         </div>
                         <div className="col-12 col-md-6 col-lg-3 footer-links d-flex justify-content-lg-center">

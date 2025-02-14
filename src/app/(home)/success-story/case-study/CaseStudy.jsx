@@ -54,7 +54,9 @@ function CaseStudy() {
 
     return (
         <>
-            <div id="content" className="site-content ">
+            <div id="content" className="site-content " onContextMenu={(e) => {
+        e.preventDefault();
+      }}>
                 <div className="page_header_default style_one ">
                     <div className="parallax_cover">
                         <div className="simpleParallax">

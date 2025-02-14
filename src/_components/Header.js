@@ -24,7 +24,9 @@ function Header() {
     return (
         <>
 
-            <div className="header_area" id="header_contents">
+            <div className="header_area" id="header_contents" onContextMenu={(e) => {
+        e.preventDefault();
+      }}>
 
                 <section className="header header_default style_five get_sticky_header ">
                     <div className="navbar d-xl-none d-md-none" id="myTopnav">
@@ -45,9 +47,9 @@ function Header() {
                                 <label htmlFor="toggle-2">About Us</label>
                                 <input type="checkbox" id="toggle-2" />
                                 <ul>
-                                    <li><Link href="/about/our_story" onClick={() => setToggle(!toggle)}>Our Story</Link></li>
-                                    <li><Link href="/about/leadership_team" onClick={() => setToggle(!toggle)}>Leadership Team</Link></li>
-                                    <li><Link href="/about/vision-and_value" onClick={() => setToggle(!toggle)}>Vision & Value</Link></li>
+                                    <li><Link href="/about/our-story" onClick={() => setToggle(!toggle)}>Our Story</Link></li>
+                                    <li><Link href="/about/our-team" onClick={() => setToggle(!toggle)}>Leadership Team</Link></li>
+                                    <li><Link href="/about/vision-and-value" onClick={() => setToggle(!toggle)}>Vision & Value</Link></li>
                                 </ul>
                             </div>
                             <div className="dropdown">
@@ -127,8 +129,8 @@ function Header() {
 
 
                                                         <ul>
-                                                            <li><Link href="/about/our_story">Our Story </Link></li>
-                                                            <li><Link href="/about/our_team">Leadership Team </Link></li>
+                                                            <li><Link href="/about/our-story">Our Story </Link></li>
+                                                            <li><Link href="/about/our-team">Leadership Team </Link></li>
                                                             {/* <li><Link href="#">Mission </Link></li> */}
                                                             <li><Link href="/about/vision-and-value">Vision & Values</Link></li>
                                                             {/* <li><Link href="#">Partners</Link></li>

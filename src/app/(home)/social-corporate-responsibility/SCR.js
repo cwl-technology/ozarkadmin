@@ -2,6 +2,7 @@
 
 import Loader from '@/_components/Loader';
 import api from '@/_config/config';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 const SCR = () => {
     const [data, setData] = useState();
@@ -27,7 +28,9 @@ const SCR = () => {
     }
     return (
         <>
-            <div id="content" className="site-content ">
+            <div id="content" className="site-content " onContextMenu={(e) => {
+        e.preventDefault();
+      }}>
                 <div className="page_header_default style_one ">
                     <div className="parallax_cover">
                         <div className="simpleParallax">
@@ -194,14 +197,14 @@ const SCR = () => {
                     <div className="row">
                         <div className="col-xxl-5 col-xl-4 col-lg-4 col-md-12 pd_zero bg_op_1 text-center" style={{ backgroundImage: "url(/assets/images/banner-four-bg.jpg)" }}>
 
-                            <div className="video_btn_all">
+                            {/* <div className="video_btn_all">
                                 <div className="pd_top_200"></div>
                                 <div className="pd_top_70"></div>
                                 <div className="video_box">
                                     <a href="https://www.youtube.com/71EZb94AS1k" className="lightbox-image"><i className="icon-play"></i></a>
                                 </div>
                                 <div className="pd_top_80"></div>
-                            </div>
+                            </div> */}
 
                         </div>
 
@@ -253,8 +256,8 @@ const SCR = () => {
                                         {/* <div className="pd_bottom_30"></div> */}
                                         <div className="row gutter_15px">
                                             <div className="col-lg-4 col-md-4 col-sm-12">
-                                                <div className="theme_btn_all color_one">
-                                                    <a href="#" target="_blank" rel="nofollow" className="theme-btn one">Contact us</a>
+                                                <div className="theme_btn_all">
+                                                    <Link href="/contact/contact-us" target="_blank" rel="nofollow" className="theme-btn two special-btn">Contact us</Link>
                                                 </div>
                                                 <div className="pd_bottom_30"></div>
                                             </div>

@@ -37,7 +37,9 @@ const OurExpertise = () => {
 
     return (
         <>
-            <div id="content" className="site-content ">
+            <div id="content" className="site-content " onContextMenu={(e) => {
+        e.preventDefault();
+      }}>
                 <div className="page_header_default style_one ">
                     <div className="parallax_cover">
                         <div className="simpleParallax">
@@ -74,9 +76,9 @@ const OurExpertise = () => {
                             <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-5 mb-lg-0 mb-xl-0">
                                 <div className="title_all_box style_one  dark_color">
                                     <div className="title_sections left">
-                                        <div className="before_title">Innovative Solutions &amp;</div>
-                                        <h2> Backed by Experience</h2>
-                                        <p>We leverage cutting-edge tools and proven strategies to deliver customized solutions, ensuring your business stays ahead in a competitive landscape.</p>
+                                        <div className="before_title">Why Choose &amp;</div>
+                                        <h2>Ozark & Co.?</h2>
+                                        <p>At Ozark & Co., we understand that entrusting someone with your financial future is a profound decision. In a world filled with complex choices, our commitment to transparency, tailored guidance, and unwavering integrity sets us apart.</p>
                                     </div>
                                 </div>
                                 {/* <div className="theme_btn_all color_one">

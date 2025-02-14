@@ -66,7 +66,11 @@ export default function Home() {
   return (
 
     <>
-      <div id="content" className="site-content ">
+      <div id="content" className="site-content " 
+      // onContextMenu={(e) => {
+      //   e.preventDefault();
+      // }}
+      >
         <section className="slider style_page_thirteen nav_position_one position-relative">
           <div>
 
@@ -880,11 +884,11 @@ export default function Home() {
                             <li className="date">
                               <Link href={`/blogs/${ele.slug}`}>
                                 <span className="icon-calendar me-2"></span>
-                                <DateFormatter Date={ele.blog_date}/>
+                                <DateFormatter Date={ele.blog_date} />
                               </Link>
                             </li>
                           </ul>
-                          <h2 className="entry-title" style={{ height: "110px",display:"flex",alignItems:"center" }}><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h2>
+                          <h2 className="entry-title" style={{ height: "110px", display: "flex", alignItems: "center" }}><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h2>
                           <p className="short_desc">{ele.content.substring(0, 90)}...</p>
                           <div className="bottom_content clearfix">
                             <div className="continure_reading">

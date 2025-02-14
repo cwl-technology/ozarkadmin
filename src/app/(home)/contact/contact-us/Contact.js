@@ -15,7 +15,7 @@ function Contact() {
    const onSubmit = async (data) => {
       try {
          const res = await api.post("/contact_enquiry/post_contact_enquiry_data", data);
-         console.log(res.data);
+
          if (res.data.status == 1) {
             toast.success(res.data.message);
             reset();
@@ -39,7 +39,9 @@ function Contact() {
    }
    return (
       <>
-         <div id="content" className="site-content ">
+         <div id="content" className="site-content " onContextMenu={(e) => {
+        e.preventDefault();
+      }}>
             <div className="page_header_default style_one ">
                <div className="parallax_cover">
                   <div className="simpleParallax">

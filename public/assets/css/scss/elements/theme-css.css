@@ -6789,7 +6789,7 @@ body.single-header {
     padding: 5px 10px;
   }
 
- 
+
 }
 
 .navbar_right .dropdown-btn {
@@ -21281,7 +21281,7 @@ header .flaticon-list {
   padding: 20px;
   background: #fff;
   border-radius: 10px;
-  height: 230px;
+  height: 253px;;
 }
 
 .icon_box_all.style_seven {
@@ -36111,4 +36111,9 @@ input[type="file" i] {
   background: white;
   height: 100%;
   padding: 20px;
+}
+
+
+.special-btn:hover {
+  color: white !important;
 }
