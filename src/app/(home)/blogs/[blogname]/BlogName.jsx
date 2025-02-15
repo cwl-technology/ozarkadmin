@@ -148,24 +148,27 @@ function BlogName() {
                                        <div className="pd_bottom_15"></div>
                                        <div className="row gutter_30px">
                                           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-5 mb-lg-5 mb-xl-0">
-                                             <div className="simple_image_boxes" style={{ height: "100%", maxHeight: "390px" }}>
-                                                {
-                                                   data?.image1 && <img src={data?.image1} className="simp_img img-fluid height_540px" alt="" />
-                                                }
-                                             </div>
+                                             {
+                                                data?.image1 &&
+                                                <div className="simple_image_boxes" style={{ height: "100%", maxHeight: "390px" }}>
+                                                   <img src={data?.image1} className="simp_img img-fluid height_540px" alt="" />
+                                                </div>
+                                             }
                                              <div className="pd_bottom_30"></div>
                                           </div>
                                           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                             <div className="simple_image_boxes" style={{ maxHeight: "180px" }}>
-                                                {
-                                                   data?.image2 && <img src={data?.image2} className="simp_img img-fluid height_540px" alt="" />
-                                                }
-                                             </div>
+                                             {
+                                                data?.image2 &&
+                                                <div className="simple_image_boxes" style={{ maxHeight: "180px" }}>
+                                                   <img src={data?.image2} className="simp_img img-fluid height_540px" alt="" />
+                                                </div>
+                                             }
                                              <div className="pd_bottom_30"></div>
-                                             <div className="simple_image_boxes " style={{ maxHeight: "180px" }}>
-                                                {data?.image3 && <img src={data?.image3} className="simp_img img-fluid height_250px" alt="" />}
-
-                                             </div>
+                                             {data?.image3 &&
+                                                <div className="simple_image_boxes " style={{ maxHeight: "180px" }}>
+                                                   <img src={data?.image3} className="simp_img img-fluid height_250px" alt="" />
+                                                </div>
+                                             }
                                           </div>
                                        </div>
                                        <div className="invisible_normal_spacing"></div>
