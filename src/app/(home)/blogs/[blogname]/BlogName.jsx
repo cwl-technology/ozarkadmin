@@ -15,7 +15,7 @@ function BlogName() {
    const blog_slug = pathname.split("/")[2]
    const [data, setData] = useState();
    const [latestBlog, setBlogLatest] = useState();
-   const [loading,setLoading] = useState(true)
+   const [loading, setLoading] = useState(true)
 
    useEffect(() => {
       getBlogData();
@@ -42,15 +42,15 @@ function BlogName() {
       }
    }
 
-   if(loading){
-      return <Loader/>
-  }
+   if (loading) {
+      return <Loader />
+   }
    return (
       <>
 
          <div id="content" className="site-content " onContextMenu={(e) => {
-        e.preventDefault();
-      }}>
+            e.preventDefault();
+         }}>
             <div className="page_header_default style_one ">
                <div className="parallax_cover">
                   <div className="simpleParallax">
@@ -115,7 +115,7 @@ function BlogName() {
                                           </div>
                                           <div className="content_inner">
                                              <p className="post-date"><span className="icon-calendar"></span>
-                                             <DateFormatter Date={ele.blog_date}/>
+                                                <DateFormatter Date={ele.blog_date} />
                                              </p>
                                              <h3><Link href={`/blogs/${ele.slug}`}>{ele.heading}</Link></h3>
                                           </div>
@@ -149,17 +149,22 @@ function BlogName() {
                                        <div className="row gutter_30px">
                                           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-5 mb-lg-5 mb-xl-0">
                                              <div className="simple_image_boxes" style={{ height: "100%", maxHeight: "390px" }}>
-                                                <img src={data?.image1} className="simp_img img-fluid height_540px" alt="" />
+                                                {
+                                                   data?.image1 && <img src={data?.image1} className="simp_img img-fluid height_540px" alt="" />
+                                                }
                                              </div>
                                              <div className="pd_bottom_30"></div>
                                           </div>
                                           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                             <div className="simple_image_boxes" style={{maxHeight:"180px"}}>
-                                                <img src={data?.image2} className="simp_img img-fluid height_260" alt="" />
+                                             <div className="simple_image_boxes" style={{ maxHeight: "180px" }}>
+                                                {
+                                                   data?.image2 && <img src={data?.image2} className="simp_img img-fluid height_540px" alt="" />
+                                                }
                                              </div>
                                              <div className="pd_bottom_30"></div>
-                                             <div className="simple_image_boxes " style={{maxHeight:"180px"}}>
-                                                <img src={data?.image3} className="simp_img img-fluid height_250px" alt="" />
+                                             <div className="simple_image_boxes " style={{ maxHeight: "180px" }}>
+                                                {data?.image3 && <img src={data?.image3} className="simp_img img-fluid height_250px" alt="" />}
+
                                              </div>
                                           </div>
                                        </div>
