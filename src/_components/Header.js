@@ -30,7 +30,7 @@ function Header() {
 
                 <section className="header header_default style_five get_sticky_header ">
                     <div className="navbar d-xl-none d-md-none" id="myTopnav">
-                        <div className="mob-logo-box"> <a href="index.html" className="logo navbar-brand"> <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default" /> </a> </div>
+                        <div className="mob-logo-box"> <Link href="/" className="logo navbar-brand"> <img src="/assets/images/logo.png" alt="Ozark Logo" className="logo_default" /> </Link> </div>
                         <label htmlFor="togglericon" className="toggler" checked></label>
                         <input type="checkbox" id="togglericon" className="toggler" onClick={() => setToggle(!toggle)} />
                         <div className={`nav at-right ${toggle ? "navigation-visible" : ""}`}>

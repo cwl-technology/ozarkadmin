@@ -77,15 +77,23 @@ export default function page() {
 
                           </td>
                           <td>
-                            <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                            {ele.subject ? <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
                               {ele.subject}
+                            </div> : <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                              Not Available
                             </div>
+                            }
 
                           </td>
                           <td>
-                            <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
-                              {ele.message}
-                            </div>
+                            {
+                              ele.message ? <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                                {ele.message}
+                              </div> : <div className="widget-heading" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                                Not Available
+                              </div>
+                            }
+
                           </td>
                           <td>
                             <div className="widget-heading"></div>

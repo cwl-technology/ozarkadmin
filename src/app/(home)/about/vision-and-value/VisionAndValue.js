@@ -87,7 +87,7 @@ const VisionAndValue = () => {
                                             <span className=" icon-bow-and-arrow"></span>
                                         </div>
                                         <div className="txt_content">
-                                            <h3><a href="#" target="_blank" rel="nofollow">{data?.subheading1}</a></h3>
+                                            <h3><a href="#" rel="nofollow" className='pe-none'>{data?.subheading1}</a></h3>
                                             <p>{data?.content1}</p>
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@ const VisionAndValue = () => {
                                             <span className=" icon-growth"></span>
                                         </div>
                                         <div className="txt_content">
-                                            <h3><a href="#" target="_blank" rel="nofollow">{data?.subheading3}</a></h3>
+                                            <h3><a href="#" className='pe-none' rel="nofollow">{data?.subheading3}</a></h3>
                                             <div dangerouslySetInnerHTML={{ __html: data?.description1 || '' }}></div>
                                             {/* <div className="btn_left">
                                                 <a href="#" target="_blank" rel="nofollow" className="theme-btn one">Read More</a>
@@ -117,7 +117,7 @@ const VisionAndValue = () => {
                                             <span className=" icon-binoculars"></span>
                                         </div>
                                         <div className="txt_content">
-                                            <h3><a href="#" target="_blank" rel="nofollow">{data?.subheading2}</a></h3>
+                                            <h3><a href="#" className='pe-none' rel="nofollow">{data?.subheading2}</a></h3>
                                             <p>{data?.content2}</p>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@ const VisionAndValue = () => {
                                         </div>
                                         <div className="text_box">
                                             <h2>
-                                                <a href="#">
+                                                <a href="#" className='pe-none'>
                                                     24/7 Customer support
                                                 </a>
                                             </h2>
@@ -178,7 +178,7 @@ const VisionAndValue = () => {
                                         </div>
                                         <div className="text_box">
                                             <h2>
-                                                <a href="#">
+                                                <a href="#" className='pe-none'>
                                                     Experience Team
                                                 </a>
                                             </h2>
@@ -198,7 +198,7 @@ const VisionAndValue = () => {
                                         </div>
                                         <div className="text_box">
                                             <h2>
-                                                <a href="#">
+                                                <a href="#" className='pe-none'>
                                                     Smart solutions
                                                 </a>
                                             </h2>

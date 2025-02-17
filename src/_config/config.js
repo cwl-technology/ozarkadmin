@@ -5,5 +5,6 @@ const api = axios.create({
     // baseURL: "http://localhost:5000/api"
 })
 
-export const BASE_URL = "https://ozarkbackend-production-4da6.up.railway.app/"
+export const BASE_URL = "https://ozarkbackend-production-4da6.up.railway.app"
+// export const BASE_URL = "http://localhost:5000"
 export default api;

@@ -142,7 +142,7 @@ const OurTeam = () => {
                                         </div>
                                         <div className="txt_content">
                                             <h3>
-                                                <a href="#" target="_blank" rel="nofollow">{teamPageData?.subheading1}</a>
+                                                <a href="#"  rel="nofollow" className='pe-none'>{teamPageData?.subheading1}</a>
                                             </h3>
                                             <p>{teamPageData?.content1}</p>
                                         </div>
@@ -158,7 +158,7 @@ const OurTeam = () => {
                                         </div>
                                         <div className="txt_content">
                                             <h3>
-                                                <a href="#" target="_blank" rel="nofollow">{teamPageData?.subheading2}</a>
+                                                <a href="#" rel="nofollow" className='pe-none'>{teamPageData?.subheading2}</a>
                                             </h3>
                                             <p>{teamPageData?.content2}</p>
                                         </div>
@@ -174,7 +174,7 @@ const OurTeam = () => {
                                         </div>
                                         <div className="txt_content">
                                             <h3>
-                                                <a href="#" target="_blank" rel="nofollow">{teamPageData?.subheading3}</a>
+                                                <a href="#" rel="nofollow" className='pe-none'>{teamPageData?.subheading3}</a>
                                             </h3>
                                             <p>{teamPageData?.content3}</p>
                                         </div>
@@ -190,7 +190,7 @@ const OurTeam = () => {
                                         </div>
                                         <div className="txt_content">
                                             <h3>
-                                                <a href="#" target="_blank" rel="nofollow">{teamPageData?.subheading4}</a>
+                                                <a href="#" rel="nofollow" className='pe-none'>{teamPageData?.subheading4}</a>
                                             </h3>
                                             <p>{teamPageData?.content4}</p>
                                         </div>

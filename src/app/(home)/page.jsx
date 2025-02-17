@@ -280,6 +280,7 @@ export default function Home() {
                 delay: 2500,
                 disableOnInteraction: true,
               }}
+              loop
               breakpoints={{
                 680: {
                   slidesPerView: 2

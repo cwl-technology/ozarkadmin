@@ -198,7 +198,7 @@ const OurStory = () => {
                                                 <img src={data?.icon1} className="img-fluid svg_image" alt="icon png" />
                                             </div>
                                             <div className="text_box">
-                                                <h2><a href="#" target="_blank" rel="nofollow">{data?.subheading1} </a></h2>
+                                                <h2><a href="#" rel="nofollow" className='pe-none'>{data?.subheading1} </a></h2>
                                                 <p>{data?.content1} </p>
                                             </div>
                                         </div>
@@ -213,7 +213,7 @@ const OurStory = () => {
                                                 <img src={data?.icon2} className="img-fluid svg_image" alt="icon png" />
                                             </div>
                                             <div className="text_box">
-                                                <h2><a href="#" target="_blank" rel="nofollow">{data?.subheading2} </a></h2>
+                                                <h2><a href="#" rel="nofollow" className='pe-none'>{data?.subheading2} </a></h2>
                                                 <p>{data?.content2} </p>
                                             </div>
                                         </div>
@@ -228,7 +228,7 @@ const OurStory = () => {
                                                 <img src={data?.icon3} className="img-fluid svg_image" alt="icon png" />
                                             </div>
                                             <div className="text_box">
-                                                <h2><a href="#" target="_blank" rel="nofollow">{data?.subheading3} </a></h2>
+                                                <h2><a href="#" rel="nofollow" className='pe-none'>{data?.subheading3} </a></h2>
                                                 <p>{data?.content3} </p>
                                             </div>
                                         </div>
@@ -243,7 +243,7 @@ const OurStory = () => {
                                                 <img src={data?.icon4} className="img-fluid svg_image" alt="icon png" />
                                             </div>
                                             <div className="text_box">
-                                                <h2><a href="#" target="_blank" rel="nofollow">{data?.subheading4} </a></h2>
+                                                <h2><a href="#" rel="nofollow" className='pe-none'>{data?.subheading4} </a></h2>
                                                 <p>{data?.content4} </p>
                                             </div>
                                         </div>

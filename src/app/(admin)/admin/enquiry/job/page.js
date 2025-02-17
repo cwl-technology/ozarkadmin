@@ -91,9 +91,16 @@ export default function page() {
                             </div>
                           </td>
                           <td>
-                            <div className="widget-heading text-center" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
-                              {ele.notice_period}
-                            </div>
+                            {
+                              ele.notice_period ?
+                                <div className="widget-heading text-center" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                                  {ele.notice_period}
+                                </div>
+                                : <div className="widget-heading text-center" style={{ maxWidth: "250px", maxHeight: "50px", overflowY: "scroll" }}>
+                                  Not Available
+                                </div>
+                            }
+
                           </td>
                           <td>
                             <div className="widget-heading d-flex justify-content-center">
